@@ -31,4 +31,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.yelp.clientlib:yelp-android:2.0.0'
 
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
