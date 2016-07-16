@@ -33,9 +33,16 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    String location = "you're in: ";
-    double lat;
-    double lon;
+    String location = "you're @ ";
+    double lat = 0.0;
+    double lon = 0.0;
+
+    // defualt parameters
+    String term = "hot and new"; //used to always look for food places
+    String numberOfResults = "5"; //return 5 businesses
+    String category_filter = "food";
+
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -43,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient client;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,27 +60,33 @@ public class MainActivity extends AppCompatActivity {
         yelp();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void updateCoordinates() {
+    private void updateCoordinates()
+    {
         TextView text = (TextView) findViewById(R.id.textLocation);
         String currentLocation = location + "Latitude: " + lat + " Longitude: " + lon;
         text.setText(currentLocation);
 
     }
 
-    private void getCoordinates() {
+
+    private void getCoordinates()
+    {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        if(loc==null)
+        {
+            loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(loc==null)
+            {
+                lon=100;
+                lat=100;
+            }
+        }
         lon = loc.getLongitude();
         lat = loc.getLatitude();
-        if (lat == 0) {
-            lat = 100;
-        }
-        if (lon == 0) {
-            lon = 100;
-        }
     }
 
     private void yelp()
@@ -84,55 +97,42 @@ public class MainActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
 
         // general params
-        params.put("term", "food");
-        params.put("limit", "3");
-
-        // locale params
-        params.put("lang", "fr");
+        params.put("term", term);
+        params.put("limit", numberOfResults);
+        params.put("category_filter",category_filter);
 
         CoordinateOptions coordinate = CoordinateOptions.builder()
                 .latitude(lat)
                 .longitude(lon).build();
         Call<SearchResponse> call = yelpAPI.search(coordinate, params);
         // Response<SearchResponse> response = call.execute();
-        Callback<SearchResponse> callback = new Callback<SearchResponse>() {
+        Callback<SearchResponse> callback = new Callback<SearchResponse>()
+        {
             TextView con = (TextView) findViewById(R.id.connection);
             String con_test="not goin";
 
             @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
+            {
                 SearchResponse searchResponse = response.body();
                 // Update UI text with the searchResponse.
                 con_test="CONNECTED!!!!!!                     "+'\n'
                         + searchResponse.toString();
                 con.setText(con_test);
 
-
             }
 
             @Override
-            public void onFailure(Call<SearchResponse> call, Throwable t) {
+            public void onFailure(Call<SearchResponse> call, Throwable t)
+            {
                 // HTTP error happened, do something to handle it.
                 con_test= "fail";
                 con.setText(con_test);
             }
 
-
         };
 
         call.enqueue(callback);
-
-        //sample
-       String[]  myStringArray={"item 1","item 2","item3" ,"item 4"};
-        ArrayAdapter<String> myAdapter=new
-                ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                myStringArray);
-        ListView myList=(ListView)
-                findViewById(R.id.listView);
-       // myList.setAdapter(myAdapter);
-
 
     }
 
