@@ -22,6 +22,8 @@ import com.yelp.clientlib.entities.SearchResponse;
 import com.yelp.clientlib.entities.options.BoundingBoxOptions;
 import com.yelp.clientlib.entities.options.CoordinateOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.security.Provider;
 import java.util.HashMap;
 import java.util.List;
@@ -46,9 +48,9 @@ public class ResultsActivity extends AppCompatActivity {
     double lat = 0.0;
     double lon = 0.0;
 
-// defualt parameters
+    // default parameters
     String term = "hot and new"; //used to always look for food places
-    String numberOfResults = "5"; //return 5 businesses
+    String numberOfResults = "10"; //limit the number of results to 10 businesses
     String category_filter = "food";
 
     /**
@@ -75,8 +77,6 @@ public class ResultsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
 
         getCoordinates();
         //updateCoordinates();
@@ -113,7 +113,6 @@ public class ResultsActivity extends AppCompatActivity {
         YelpAPI yelpAPI = apiFactory.createAPI();
 
         Map<String, String> params = new HashMap<>();
-        TextView results = (TextView) findViewById(R.id.resultsView);
 
 
         // general params
@@ -121,21 +120,70 @@ public class ResultsActivity extends AppCompatActivity {
         params.put("limit", numberOfResults);
         params.put("category_filter", category_filter);
 
+
+        // build a coordinate object for the Yelp API to understand
         CoordinateOptions coordinate = CoordinateOptions.builder()
                 .latitude(lat)
                 .longitude(lon).build();
+
+        // call request to API
         Call<SearchResponse> call = yelpAPI.search(coordinate, params);
-        // Response<SearchResponse> response = call.execute();
+
+        // setup for asynchronous request
         Callback<SearchResponse> callback = new Callback<SearchResponse>() {
+
             TextView con = (TextView) findViewById(R.id.resultsView);
             String con_test = "not goin";
 
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 SearchResponse searchResponse = response.body();
+
+                // create an array of business objects
+                ArrayList<Business> businesses = searchResponse.businesses();
+
+                con_test = "CONNECTED!!!!!!" + '\n' + '\n';
+
+                int totalNumberOfResults = Integer.parseInt(numberOfResults);
+                int i = 0;
+
+                // iterate through the array and pull the necessary information
+                while ( i < totalNumberOfResults) {
+
+                    String businessName = businesses.get(i).name();
+                    String address = null;
+                    try {
+                        address = businesses.get(i).location().address().get(0);
+                    }
+                    catch (Exception e){
+                        address = "no address available";
+                    }
+
+                    String phoneNumber = businesses.get(i).displayPhone();
+                    Double distance = businesses.get(i).distance();
+
+                    // convert meters to miles
+                    distance = distance / 1609.34;
+
+                    String reviewSnippet = businesses.get(i).snippetText();
+
+                    String imageURL = businesses.get(i).imageUrl();
+
+                    // append the details of this particular place to the result String
+                    con_test = con_test + (i+1) + ". " + businessName + '\n'
+                                        + "Address: " + address + '\n'
+                                        + phoneNumber + '\n'
+                                        + distance +  " miles away" + '\n'
+                                        + "Img url: " + imageURL + '\n' + '\n'
+                                        + '"' + reviewSnippet + '"' + '\n' + '\n';
+                    i++;
+                }
+
+
                 // Update UI text with the searchResponse.
-                con_test = "CONNECTED!!!!!!                     " + '\n'
-                        + searchResponse.toString();
+//                con_test = "CONNECTED!!!!!!                     " + '\n'
+//                        + searchResponse.toString();
+
                 con.setText(con_test);
 
             }
@@ -149,6 +197,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         };
 
+        // make the asynchronous request
         call.enqueue(callback);
     }
 
