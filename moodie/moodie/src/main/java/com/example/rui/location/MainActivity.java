@@ -120,7 +120,11 @@ public class MainActivity extends AppCompatActivity
 
     private void yelp()
     {
-        YelpAPIFactory apiFactory = new YelpAPIFactory("GH0hCC83JR1G-T_7T54jxw", "Dw-cj6EtFAIRpu9pzSRjEuHEUNs", "LFzLyFa_z8Id4q9TvwfFgE-StpfbU4LN", "5lNteBpwcpLj8vBCJprPsnXEbL8");
+         String consumerKey ="GH0hCC83JR1G-T_7T54jxw";
+         String consumerSecret="Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
+         String token="VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
+         String tokenSecret="QYcm0Coq4XRfjLTSfyCv4Zlb38c";
+        YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey,consumerSecret , token,tokenSecret );
         YelpAPI yelpAPI = apiFactory.createAPI();
 
         Map<String, String> params = new HashMap<>();
