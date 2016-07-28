@@ -49,14 +49,51 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button mood1=(Button) findViewById(R.id.mood1);
-        final Button mood2=(Button) findViewById(R.id.mood2);
+        final Button mood1=(Button) findViewById(R.id.mood1); // button for happy mood
+        final Button mood2=(Button) findViewById(R.id.mood2); // button for sad mood
+        final Button mood3=(Button) findViewById(R.id.mood3); // button for adventurous mood
+        final Button mood4=(Button) findViewById(R.id.mood4); // button for healthy mood
 
+        // on click send request for entertainment to next activity
         mood1.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+                toRestaurantResults.putExtra("term", "entertainment");
+                startActivity(toRestaurantResults);
+                return false;
+            }
+        });
+        // on click send request for dessert to next activity
+        mood2.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+                toRestaurantResults.putExtra("term", "dessert");
+                startActivity(toRestaurantResults);
+                return false;
+            }
+        });
+        // on click send request for hot and new to next activity
+        mood3.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+                toRestaurantResults.putExtra("term", "hot and new");
+                startActivity(toRestaurantResults);
+                return false;
+            }
+        });
+        // on click send request for healthy to next activity
+        mood4.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+                toRestaurantResults.putExtra("term", "healthy");
                 startActivity(toRestaurantResults);
                 return false;
             }
