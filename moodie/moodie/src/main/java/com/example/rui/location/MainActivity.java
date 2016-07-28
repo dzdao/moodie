@@ -62,6 +62,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+
+
 public class MainActivity extends AppCompatActivity
 {
     String location = "you're @ ";
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity
 
         getCoordinates();
         //updateCoordinates();
-        yelp();
+        //yelp();
 
     }
 
