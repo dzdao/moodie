@@ -45,6 +45,7 @@ import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.TextView;
+import android.app.Activity;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
@@ -89,11 +90,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.test);
 
-        getCoordinates();
+        //getCoordinates();
         //updateCoordinates();
         //yelp();
+        giphy();
 
     }
 
@@ -176,10 +178,10 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onFailure (Call<SearchResponse> call, Throwable t)
                 {
-                // HTTP error happened, do something to handle it.
-                con_test = "fail";
-                con.setText(con_test);
-            }
+                    // HTTP error happened, do something to handle it.
+                    con_test = "fail";
+                    con.setText(con_test);
+                }
 
             };
 
@@ -190,7 +192,11 @@ public class MainActivity extends AppCompatActivity
     private void giphy() {
 
         // create Mood object and pass the context of this activity to the class
-        Mood myMood = new Mood(this);
+        Mood myMood = new Mood(this, this);
+
+        myMood.getGiphy();
+
+
     }
 
 }
