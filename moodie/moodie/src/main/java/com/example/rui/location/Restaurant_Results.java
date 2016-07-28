@@ -71,10 +71,11 @@ public class Restaurant_Results extends AppCompatActivity
     double lon = 0.0;
 
     // default parameters
-    String term = "hot and new"; //used to always look for food places
+    String term = ""; //used to always look for food places
     String numberOfResults = "5"; //limit the number of results to 10 businesses
     String category_filter = "food";
 
+    Restaurant restaurant;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -90,13 +91,18 @@ public class Restaurant_Results extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant__results);
+
+        //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
         this.term=getTerm.getString("term");
 
+        Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+        //toRestaurantResults.putExtra("response", yelpsearchResponse);
         getCoordinates();
+
         String con_test = "";
 
-        yelp();
+         yelp();
     }
 
 
@@ -140,10 +146,12 @@ public class Restaurant_Results extends AppCompatActivity
         Call<SearchResponse> call = yelpAPI.search(coordinate, params);
 
         // setup for asynchronous request
-        Callback<SearchResponse> callback = new Callback<SearchResponse>() {
+        Callback<SearchResponse> callback = new Callback<SearchResponse>()
+        {
 
             //TextView con = (TextView) findViewById(R.id.resultsView);
             String con_test = "";
+            String res = "";
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
             {   ImageView img = (ImageView) findViewById(R.id.image);
@@ -153,13 +161,16 @@ public class Restaurant_Results extends AppCompatActivity
                 ImageView img5 = (ImageView) findViewById(R.id.image5);
 
 
+                res=response.body().toString();
+
                 SearchResponse searchResponse = response.body();
-                ArrayList<Business> businesses = searchResponse.businesses();
+                final ArrayList<Business> businesses = searchResponse.businesses();
+                //TextView text = (TextView) findViewById(R.id.resultView);
+                //pass results to next activity
+                res =  businesses.get(0).name();
+               // text.setText(res);
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
                 {
-                    Restaurant restaurant = new Restaurant(businesses, i);
-
-
                     Picasso.with(getApplicationContext()).load(businesses.get(0).imageUrl()).into(img);
                     Picasso.with(getApplicationContext()).load(businesses.get(1).imageUrl()).into(img2);
                     Picasso.with(getApplicationContext()).load(businesses.get(2).imageUrl()).into(img3);
@@ -171,8 +182,10 @@ public class Restaurant_Results extends AppCompatActivity
                 {
                     @Override
                     public boolean onTouch(View v, MotionEvent event)
-                    {Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        startActivity(toRestaurantResults);
+                    {Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+
+                        toRestaurantDetails.putExtra("results",res);
+                        startActivity(toRestaurantDetails);
                         return false;
                     }
                 });
