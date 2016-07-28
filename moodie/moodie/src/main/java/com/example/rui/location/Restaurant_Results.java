@@ -100,13 +100,6 @@ public class Restaurant_Results extends AppCompatActivity
     }
 
 
-    private void updateCoordinates() {
-        TextView text = (TextView) findViewById(R.id.textLocation);
-        String currentLocation = location + "Latitude: " + lat + " Longitude: " + lon;
-        text.setText(currentLocation);
-
-    }
-
 
     private void getCoordinates() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
