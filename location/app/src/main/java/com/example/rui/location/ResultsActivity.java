@@ -50,7 +50,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     // default parameters
     String term = "hot and new"; //used to always look for food places
-    String numberOfResults = "10"; //limit the number of results to 10 businesses
+    String numberOfResults = "5"; //limit the number of results to 10 businesses
     String category_filter = "food";
 
     /**
@@ -150,12 +150,14 @@ public class ResultsActivity extends AppCompatActivity {
                 // iterate through the array and pull the necessary information
                 while ( i < totalNumberOfResults) {
 
-                    String businessName = businesses.get(i).name();
+                    String businessName = null;
                     String address = null;
                     try {
+                        businessName = businesses.get(i).name();
                         address = businesses.get(i).location().address().get(0);
                     }
                     catch (Exception e){
+                        businessName = "no name available";
                         address = "no address available";
                     }
 
