@@ -187,4 +187,10 @@ public class MainActivity extends AppCompatActivity
         call.enqueue(callback);
     }
 
+    private void giphy() {
+
+        // create Mood object and pass the context of this activity to the class
+        Mood myMood = new Mood(this);
+    }
+
 }
