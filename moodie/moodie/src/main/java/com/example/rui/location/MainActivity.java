@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity
 
     private void yelp()
     {
-         String consumerKey ="GH0hCC83JR1G-T_7T54jxw";
-         String consumerSecret="Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
-         String token="VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
-         String tokenSecret="QYcm0Coq4XRfjLTSfyCv4Zlb38c";
+        String consumerKey ="GH0hCC83JR1G-T_7T54jxw";
+        String consumerSecret="Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
+        String token="VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
+        String tokenSecret="QYcm0Coq4XRfjLTSfyCv4Zlb38c";
         YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey,consumerSecret , token,tokenSecret );
         YelpAPI yelpAPI = apiFactory.createAPI();
 
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity
             ImageView img4 = (ImageView) findViewById(R.id.image4);
             ImageView img5 = (ImageView) findViewById(R.id.image5);
             String gifURL="http://giphy.com/gifs/christian-bale-american-psycho-christiam-9cWlkwWUTgpOg";
+
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
             {
