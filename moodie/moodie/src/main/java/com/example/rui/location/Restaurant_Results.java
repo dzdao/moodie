@@ -92,9 +92,9 @@ public class Restaurant_Results extends AppCompatActivity
         setContentView(R.layout.activity_restaurant__results);
         Bundle getTerm = getIntent().getExtras();
         this.term=getTerm.getString("term");
+
         getCoordinates();
-        //updateCoordinates();
-         String con_test = "";
+        String con_test = "";
 
         yelp();
     }
