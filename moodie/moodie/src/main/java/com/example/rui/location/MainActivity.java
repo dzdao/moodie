@@ -40,7 +40,10 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity
 {
-
+    String searchTermForHappyMood="entertainment";
+    String searchTermForSadMood="dessert";
+    String searchTermForadventurousMood="hot and new";
+    String searchTermForhealthyMood="healthy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "entertainment");
+                toRestaurantResults.putExtra("term", searchTermForHappyMood );
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "dessert");
+                toRestaurantResults.putExtra("term", searchTermForSadMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "hot and new");
+                toRestaurantResults.putExtra("term", searchTermForadventurousMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "healthy");
+                toRestaurantResults.putExtra("term", searchTermForhealthyMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
