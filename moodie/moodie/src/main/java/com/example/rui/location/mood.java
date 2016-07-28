@@ -21,10 +21,6 @@ public class mood
     public mood(String name)
     {
 
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(giphyUrl)
-                .build();
     }
 
 
