@@ -90,17 +90,12 @@ public class Restaurant_Results extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant__results);
-
+        Bundle getTerm = getIntent().getExtras();
+        this.term=getTerm.getString("term");
         getCoordinates();
         //updateCoordinates();
          String con_test = "";
 
-        TextView con = (TextView) findViewById(R.id.resultView);
-        ImageView img = (ImageView) findViewById(R.id.image);
-        ImageView img2 = (ImageView) findViewById(R.id.image2);
-        ImageView img3 = (ImageView) findViewById(R.id.image3);
-        ImageView img4 = (ImageView) findViewById(R.id.image4);
-        ImageView img5 = (ImageView) findViewById(R.id.image5);
         yelp();
     }
 
