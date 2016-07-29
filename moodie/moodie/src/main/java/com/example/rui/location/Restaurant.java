@@ -51,7 +51,7 @@ public class Restaurant
     }
 
     public String getAddress() {
-        return address;
+        return address+ city+state;
     }
 
     public String getPhoneNumber() {

@@ -151,7 +151,7 @@ public class Restaurant_Results extends AppCompatActivity
 
             //TextView con = (TextView) findViewById(R.id.resultsView);
             String con_test = "";
-            String res = "";
+
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
             {   ImageView img = (ImageView) findViewById(R.id.image);
@@ -161,13 +161,34 @@ public class Restaurant_Results extends AppCompatActivity
                 ImageView img5 = (ImageView) findViewById(R.id.image5);
 
 
-                res=response.body().toString();
+                //res=response.body().toString();
 
                 SearchResponse searchResponse = response.body();
                 final ArrayList<Business> businesses = searchResponse.businesses();
                 //TextView text = (TextView) findViewById(R.id.resultView);
+
+
                 //pass results to next activity
-                res =  businesses.get(0).name();
+                final String businessName =  businesses.get(0).name();
+                String businessAddress;
+                try
+                {
+                    businessAddress = businesses.get(0).location().address().get(0);
+                }
+                catch (Exception e){
+                    businessAddress = "no address available";
+                }
+
+                final String businessPhoneNumber = businesses.get(0).displayPhone();
+                double distance = businesses.get(0).distance();
+                final String city = businesses.get(0).location().city();
+                final String state = businesses.get(0).location().stateCode();
+                final String reviewSnippet = businesses.get(0).snippetText();
+                final String imageURL =businesses.get(0).imageUrl();
+                // convert meters to miles
+                distance = distance / 1609.34;
+
+
                // text.setText(res);
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
                 {
@@ -178,13 +199,23 @@ public class Restaurant_Results extends AppCompatActivity
                     Picasso.with(getApplicationContext()).load(businesses.get(4).imageUrl()).into(img5);
 
                 }
+                final String finalBusinessAddress = businessAddress;
+                final double finalDistance = distance;
                 img.setOnTouchListener(new View.OnTouchListener()
                 {
                     @Override
                     public boolean onTouch(View v, MotionEvent event)
                     {Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
 
-                        toRestaurantDetails.putExtra("results",res);
+                        toRestaurantDetails.putExtra("name",businessName);
+                        toRestaurantDetails.putExtra("address", finalBusinessAddress);
+                        toRestaurantDetails.putExtra("phoneNumber",businessPhoneNumber);
+                        toRestaurantDetails.putExtra("imageURL", imageURL);
+                        toRestaurantDetails.putExtra("city",city);
+                        toRestaurantDetails.putExtra("state",state);
+                        toRestaurantDetails.putExtra("reviewSnippet",reviewSnippet);
+                        toRestaurantDetails.putExtra("distance",finalDistance);
+
                         startActivity(toRestaurantDetails);
                         return false;
                     }
@@ -204,5 +235,11 @@ public class Restaurant_Results extends AppCompatActivity
         // make the asynchronous request
         call.enqueue(callback);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+           super.onBackPressed();
+          Intent intent = new Intent(this, MainActivity.class);
+          startActivity(intent);
+      }
 }
