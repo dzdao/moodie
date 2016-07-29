@@ -32,21 +32,14 @@ package com.example.rui.location;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
-import android.widget.Button;
-import android.widget.EditText;
-import android.content.Intent;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.preference.PreferenceManager;
-import android.content.SharedPreferences;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
@@ -92,9 +85,9 @@ public class Restaurant_Results extends AppCompatActivity
         setContentView(R.layout.activity_restaurant__results);
         Bundle getTerm = getIntent().getExtras();
         this.term=getTerm.getString("term");
+
         getCoordinates();
-        //updateCoordinates();
-         String con_test = "";
+        String con_test = "";
 
         yelp();
     }
@@ -190,6 +183,13 @@ public class Restaurant_Results extends AppCompatActivity
 
         // make the asynchronous request
         call.enqueue(callback);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
