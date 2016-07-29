@@ -11,7 +11,6 @@ import okhttp3.Callback;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.ImageButton;
 import android.os.Handler;
 import java.io.IOException;
@@ -19,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.bumptech.glide.Glide;
+//import android.widget.TextView;
 //import java.io.IOException;
 //import android.widget.ImageView;
 //import android.widget.Toast;
@@ -51,7 +51,6 @@ public class Mood
         this.context = context;
         this.activity = activity;
         handler = new Handler(context.getMainLooper());
-        //this.moodToSearchFor = mood;
         this.moodToSearchFor = mood;
         this.giphyUrl = null;
         this.imgBtn = imgBtn;
@@ -165,17 +164,5 @@ public class Mood
         giphyUrl = gif.getUrl();
         Glide.with(activity).load(giphyUrl).into(imgBtn);
 
-    }
-
-    public String getUrl() {
-
-        TextView textView = (TextView)activity.findViewById(R.id.textBox);
-
-        if(giphyUrl!= null)
-            textView.append(" " + giphyUrl);
-        else
-            textView.append(" Line 369, url is not working. \n");
-
-        return giphyUrl;
     }
 }
