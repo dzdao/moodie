@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         //Glide.with(this).load(happyUrl).into(mood1);
     }
 
-    // on click, send request for entertainment to next activity (using xml to call function)
+    // on click, send request for a term to next activity (using xml to call function)
     public void buttonClicked(View v)
     {
         Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
