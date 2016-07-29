@@ -67,7 +67,10 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class MainActivity extends AppCompatActivity
 {
-    String happyUrl, sadUrl, healthyUrl, adventurousUrl;
+    String searchTermForHappyMood="entertainment";
+    String searchTermForSadMood="dessert";
+    String searchTermForadventurousMood="hot and new";
+    String searchTermForhealthyMood="healthy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -76,10 +79,10 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
-        ImageButton mood1=(ImageButton) findViewById(R.id.mood1); // button for happy mood
-        ImageButton mood2=(ImageButton) findViewById(R.id.mood2); // button for sad mood
-        ImageButton mood3=(ImageButton) findViewById(R.id.mood3); // button for adventurous mood
-        ImageButton mood4=(ImageButton) findViewById(R.id.mood4); // button for healthy mood
+        final ImageButton mood1=(ImageButton) findViewById(R.id.mood1); // button for happy mood
+        final ImageButton mood2=(ImageButton) findViewById(R.id.mood2); // button for sad mood
+        final ImageButton mood3=(ImageButton) findViewById(R.id.mood3); // button for adventurous mood
+        final ImageButton mood4=(ImageButton) findViewById(R.id.mood4); // button for healthy mood
 
 
         Mood happy = new Mood(this, this, "happy", mood1);
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "entertainment");
+                toRestaurantResults.putExtra("term", searchTermForHappyMood );
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "dessert");
+                toRestaurantResults.putExtra("term", searchTermForSadMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "hot and new");
+                toRestaurantResults.putExtra("term", searchTermForadventurousMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event)
             { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
-                toRestaurantResults.putExtra("term", "healthy");
+                toRestaurantResults.putExtra("term", searchTermForhealthyMood);
                 startActivity(toRestaurantResults);
                 return false;
             }
