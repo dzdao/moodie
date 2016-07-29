@@ -58,7 +58,7 @@
         android:paddingLeft="10dp"
         android:gravity="bottom">
 
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood1"
@@ -76,7 +76,7 @@
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
 
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood4"
@@ -111,7 +111,7 @@
         android:paddingRight="10dp"
         android:gravity="bottom">
 
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood2"
@@ -129,7 +129,7 @@
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
 
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood3"
