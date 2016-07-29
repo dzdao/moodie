@@ -71,10 +71,11 @@ public class Restaurant_Results extends AppCompatActivity
     double lon = 0.0;
 
     // default parameters
-    String term = "hot and new"; //used to always look for food places
-    String numberOfResults = "5"; //limit the number of results to 10 businesses
+    String term = ""; //used to always look for food places
+    String numberOfResults = "8"; //limit the number of results to 10 businesses
     String category_filter = "food";
 
+    Restaurant[] restaurant;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -87,25 +88,26 @@ public class Restaurant_Results extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        restaurant = new Restaurant[8];
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant__results);
+
+        //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
         this.term=getTerm.getString("term");
+
+        Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+        //toRestaurantResults.putExtra("response", yelpsearchResponse);
         getCoordinates();
-        //updateCoordinates();
-         String con_test = "";
+
+        String con_test = "";
 
         yelp();
+
+
     }
 
-
-    private void updateCoordinates() {
-        TextView text = (TextView) findViewById(R.id.textLocation);
-        String currentLocation = location + "Latitude: " + lat + " Longitude: " + lon;
-        text.setText(currentLocation);
-
-    }
 
 
     private void getCoordinates() {
@@ -123,13 +125,12 @@ public class Restaurant_Results extends AppCompatActivity
         lat = loc.getLatitude();
     }
 
-    private void yelp()
-    {
-        String consumerKey ="GH0hCC83JR1G-T_7T54jxw";
-        String consumerSecret="Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
-        String token="VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
-        String tokenSecret="QYcm0Coq4XRfjLTSfyCv4Zlb38c";
-        YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey,consumerSecret , token,tokenSecret );
+    private void yelp() {
+        String consumerKey = "GH0hCC83JR1G-T_7T54jxw";
+        String consumerSecret = "Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
+        String token = "VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
+        String tokenSecret = "QYcm0Coq4XRfjLTSfyCv4Zlb38c";
+        YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey, consumerSecret, token, tokenSecret);
         YelpAPI yelpAPI = apiFactory.createAPI();
 
         Map<String, String> params = new HashMap<>();
@@ -151,35 +152,89 @@ public class Restaurant_Results extends AppCompatActivity
 
             //TextView con = (TextView) findViewById(R.id.resultsView);
             String con_test = "";
+
             @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
-            {   ImageView img = (ImageView) findViewById(R.id.image);
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                ImageView img = (ImageView) findViewById(R.id.image);
                 ImageView img2 = (ImageView) findViewById(R.id.image2);
                 ImageView img3 = (ImageView) findViewById(R.id.image3);
                 ImageView img4 = (ImageView) findViewById(R.id.image4);
                 ImageView img5 = (ImageView) findViewById(R.id.image5);
+                ImageView img6 = (ImageView) findViewById(R.id.image6);
+                ImageView img7 = (ImageView) findViewById(R.id.image7);
+                ImageView img8 = (ImageView) findViewById(R.id.image8);
 
+
+                //res=response.body().toString();
 
                 SearchResponse searchResponse = response.body();
-                ArrayList<Business> businesses = searchResponse.businesses();
+                final ArrayList<Business> businesses = searchResponse.businesses();
+                // TextView text = (TextView) findViewById(R.id.resultView);
+                //String businessString= businesses.get(0).toString();
+
+                //text.setText(businessString);
+
+                //pass results to next activity
+                final String businessName = businesses.get(0).name();
+                String businessAddress;
+                try {
+                    businessAddress = businesses.get(0).location().address().get(0);
+                } catch (Exception e) {
+                    businessAddress = "no address available";
+                }
+
+                final String businessPhoneNumber = businesses.get(0).displayPhone();
+                double distance = businesses.get(0).distance();
+                final String city = businesses.get(0).location().city();
+                final String state = businesses.get(0).location().stateCode();
+                final String reviewSnippet = businesses.get(0).snippetText();
+                final String imageURL = businesses.get(0).imageUrl();
+                // convert meters to miles
+                distance = distance / 1609.34;
+
+
+                // text.setText(res);
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
                 {
-                    Restaurant restaurant = new Restaurant(businesses, i);
-
-
-                    Picasso.with(getApplicationContext()).load(businesses.get(0).imageUrl()).into(img);
-                    Picasso.with(getApplicationContext()).load(businesses.get(1).imageUrl()).into(img2);
-                    Picasso.with(getApplicationContext()).load(businesses.get(2).imageUrl()).into(img3);
-                    Picasso.with(getApplicationContext()).load(businesses.get(3).imageUrl()).into(img4);
-                    Picasso.with(getApplicationContext()).load(businesses.get(4).imageUrl()).into(img5);
-
+                    String address;
+                    try {
+                        address =businesses.get(i).location().address().get(i) ;
+                    }
+                    catch (Exception e){
+                        address = "no address available";
+                    }
+                    restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
+                            address, businesses.get(i).distance(), businesses.get(i).snippetText(),
+                            businesses.get(i).imageUrl(),businesses.get(i).location().city(),businesses.get(i).location().stateCode());
                 }
-                img.setOnTouchListener(new View.OnTouchListener()
-                {
+                Picasso.with(getApplicationContext()).load(restaurant[0].getImageURL()).resize(250, 250).centerInside().into(img);
+                Picasso.with(getApplicationContext()).load(restaurant[1].getImageURL()).resize(250,250).centerInside().into(img2);
+                Picasso.with(getApplicationContext()).load(restaurant[2].getImageURL()).resize(250,250).centerInside().into(img3);
+                Picasso.with(getApplicationContext()).load(restaurant[3].getImageURL()).resize(250,250).centerInside().into(img4);
+                Picasso.with(getApplicationContext()).load(restaurant[4].getImageURL()).resize(250,250).centerInside().into(img5);
+                Picasso.with(getApplicationContext()).load(restaurant[5].getImageURL()).resize(250,250).centerInside().into(img6);
+                Picasso.with(getApplicationContext()).load(restaurant[6].getImageURL()).resize(250,250).centerInside().into(img7);
+                Picasso.with(getApplicationContext()).load(restaurant[7].getImageURL()).resize(250,250).centerInside().into(img8);
+                final String finalBusinessAddress = businessAddress;
+                final double finalDistance = distance;
+              //  TextView text = (TextView) findViewById(R.id.test);
+              //  String display = restaurant[0].getName() + "   " + restaurant[0].getPhoneNumber();
+                //text.setText(display);
+                img.setOnTouchListener(new View.OnTouchListener() {
                     @Override
-                    public boolean onTouch(View v, MotionEvent event)
-                    {Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        startActivity(toRestaurantResults);
+                    public boolean onTouch(View v, MotionEvent event) {
+                        Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+
+                        toRestaurantDetails.putExtra("name", businessName);
+                        toRestaurantDetails.putExtra("address", finalBusinessAddress);
+                        toRestaurantDetails.putExtra("phoneNumber", businessPhoneNumber);
+                        toRestaurantDetails.putExtra("imageURL", imageURL);
+                        toRestaurantDetails.putExtra("city", city);
+                        toRestaurantDetails.putExtra("state", state);
+                        toRestaurantDetails.putExtra("reviewSnippet", reviewSnippet);
+                        toRestaurantDetails.putExtra("distance", finalDistance);
+                        toRestaurantDetails.putExtra("term", term);
+                        startActivity(toRestaurantDetails);
                         return false;
                     }
                 });
@@ -187,16 +242,26 @@ public class Restaurant_Results extends AppCompatActivity
             }
 
             @Override
-            public void onFailure (Call<SearchResponse> call, Throwable t)
-            {
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
                 // HTTP error happened, do something to handle it.
-                con_test = "fail";
+                TextView connectionTest = (TextView) findViewById(R.id.test);
+                con_test = "No conection";
+                connectionTest.setText(con_test);
             }
 
         };
 
+
+
+
         // make the asynchronous request
         call.enqueue(callback);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
