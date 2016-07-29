@@ -29,31 +29,34 @@ public class RestaurantDetails extends AppCompatActivity {
         Bundle getTerm = getIntent().getExtras();
 
         this.name=getTerm.getString("name");
+        this.imageURL=getTerm.getString("imageURL");
         this.address=getTerm.getString("address");
         this.phoneNumber=getTerm.getString("phoneNumber");
         this.distance=getTerm.getDouble("distance");
         this.state=getTerm.getString("state");
         this.city=getTerm.getString("city");
         this.reviewSnippet=getTerm.getString("reviewSnippet");
-        this.imageURL=getTerm.getString("imageURL");
 
-        String RestaurantData="Restaurant Name: " + term +"\n\n" +
-                "Phone Number: " +
+        String RestaurantDataName= name;
+        String RestaurantData2= "Phone Number: " +
                 this.phoneNumber+"\n\n"+
                 "Address: " +
                 this.address +'\n'+
                 "                 " +
                 this.city+", "+this.state+"\n\n" +
                 "Review: " +
-                this.reviewSnippet+'\n'+'\n'+
-                this.imageURL;
-
-        TextView dets = (TextView) findViewById(R.id.details);
-        dets.setText(RestaurantData);
-
+                this.reviewSnippet+ "\n\n";
+        
         ImageView img = (ImageView) findViewById(R.id.image);
 
         Picasso.with(getApplicationContext()).load(imageURL).into(img);
+
+
+        TextView dets = (TextView) findViewById(R.id.details);
+        dets.setText(RestaurantDataName);
+
+        TextView dets2 = (TextView) findViewById(R.id.details2);
+        dets2.setText(RestaurantData2);
 
         this.term=getTerm.getString("term");
 
