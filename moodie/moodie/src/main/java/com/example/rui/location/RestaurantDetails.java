@@ -1,47 +1,33 @@
 package com.example.rui.location;
 
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
-import com.yelp.clientlib.connection.YelpAPI;
-import com.yelp.clientlib.connection.YelpAPIFactory;
-import com.yelp.clientlib.entities.Business;
-import com.yelp.clientlib.entities.SearchResponse;
-import com.yelp.clientlib.entities.options.CoordinateOptions;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RestaurantDetails extends AppCompatActivity {
-     String name;
-     String address;
+    String name;
+    String address;
     String phoneNumber;
     double distance;
-     String city;
-     String imageURL;
-     String reviewSnippet;
-     String state;
+    String city;
+    String imageURL;
+    String reviewSnippet;
+    String state;
+
+    String term;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
+
         //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
+
         this.name=getTerm.getString("name");
         this.address=getTerm.getString("address");
         this.phoneNumber=getTerm.getString("phoneNumber");
@@ -49,19 +35,37 @@ public class RestaurantDetails extends AppCompatActivity {
         this.state=getTerm.getString("state");
         this.city=getTerm.getString("city");
         this.reviewSnippet=getTerm.getString("reviewSnippet");
-
         this.imageURL=getTerm.getString("imageURL");
 
-        String RestaurantData=name +'\n' +
-                this.phoneNumber+'\n'+
+        String RestaurantData="Restaurant Name: " + term +"\n\n" +
+                "Phone Number: " +
+                this.phoneNumber+"\n\n"+
+                "Address: " +
                 this.address +'\n'+
-                this.city+", "+this.state+'\n'+
+                "                 " +
+                this.city+", "+this.state+"\n\n" +
+                "Review: " +
                 this.reviewSnippet+'\n'+'\n'+
                 this.imageURL;
 
         TextView dets = (TextView) findViewById(R.id.details);
         dets.setText(RestaurantData);
 
+        ImageView img = (ImageView) findViewById(R.id.image);
+
+        Picasso.with(getApplicationContext()).load(imageURL).into(img);
+
+        this.term=getTerm.getString("term");
+
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent intent = new Intent(this, Restaurant_Results.class);
+        intent.putExtra("term",term);
+        startActivity(intent);
     }
 
 }

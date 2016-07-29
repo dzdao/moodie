@@ -73,7 +73,8 @@
             android:textSize="50px"
             android:layout_marginTop="84dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -90,7 +91,8 @@
             android:textColor="#fffdfd"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
     </LinearLayout>
 
@@ -124,7 +126,8 @@
             android:textColor="#ffffff"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="84dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -141,7 +144,8 @@
             android:textColor="#fffefe"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>/>
 
     </LinearLayout>
 

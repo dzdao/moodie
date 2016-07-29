@@ -72,7 +72,7 @@ public class Restaurant_Results extends AppCompatActivity
 
     // default parameters
     String term = ""; //used to always look for food places
-    String numberOfResults = "5"; //limit the number of results to 10 businesses
+    String numberOfResults = "8"; //limit the number of results to 10 businesses
     String category_filter = "food";
 
     Restaurant restaurant;
@@ -159,6 +159,9 @@ public class Restaurant_Results extends AppCompatActivity
                 ImageView img3 = (ImageView) findViewById(R.id.image3);
                 ImageView img4 = (ImageView) findViewById(R.id.image4);
                 ImageView img5 = (ImageView) findViewById(R.id.image5);
+                ImageView img6 = (ImageView) findViewById(R.id.image6);
+                ImageView img7 = (ImageView) findViewById(R.id.image7);
+                ImageView img8 = (ImageView) findViewById(R.id.image8);
 
 
                 //res=response.body().toString();
@@ -197,7 +200,9 @@ public class Restaurant_Results extends AppCompatActivity
                     Picasso.with(getApplicationContext()).load(businesses.get(2).imageUrl()).into(img3);
                     Picasso.with(getApplicationContext()).load(businesses.get(3).imageUrl()).into(img4);
                     Picasso.with(getApplicationContext()).load(businesses.get(4).imageUrl()).into(img5);
-
+                    Picasso.with(getApplicationContext()).load(businesses.get(5).imageUrl()).into(img6);
+                    Picasso.with(getApplicationContext()).load(businesses.get(6).imageUrl()).into(img7);
+                    Picasso.with(getApplicationContext()).load(businesses.get(7).imageUrl()).into(img8);
                 }
                 final String finalBusinessAddress = businessAddress;
                 final double finalDistance = distance;
@@ -215,7 +220,7 @@ public class Restaurant_Results extends AppCompatActivity
                         toRestaurantDetails.putExtra("state",state);
                         toRestaurantDetails.putExtra("reviewSnippet",reviewSnippet);
                         toRestaurantDetails.putExtra("distance",finalDistance);
-
+                        toRestaurantDetails.putExtra("term",term);
                         startActivity(toRestaurantDetails);
                         return false;
                     }
@@ -227,7 +232,7 @@ public class Restaurant_Results extends AppCompatActivity
             public void onFailure (Call<SearchResponse> call, Throwable t)
             {
                 // HTTP error happened, do something to handle it.
-                con_test = "fail";
+                con_test = "No conection";
             }
 
         };
