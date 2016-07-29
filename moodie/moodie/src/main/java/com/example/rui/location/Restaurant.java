@@ -24,34 +24,30 @@ public class Restaurant
     private String reviewSnippet;
     private String state;
 
-    public Restaurant( ArrayList<Business> businesses, int i)
+    public Restaurant( String name , String phoneNumber,String address,
+                       double distance, String reviewSnippet,String imageURL, String state,String city)
     {
-        name = businesses.get(i).name();
-        try {
-            address = businesses.get(i).location().address().get(0);
-        }
-        catch (Exception e){
-            address = "no address available";
-        }
-        phoneNumber = businesses.get(i).displayPhone();
+        this. name = name;
+        this.phoneNumber=phoneNumber;
 
-        distance = businesses.get(i).distance();
+        this.address=address;
+        this. phoneNumber = phoneNumber;
 
-        // convert meters to miles
-        distance = distance / 1609.34;
+        this.distance = distance;
 
-        reviewSnippet = businesses.get(i).snippetText();
 
-        imageURL = businesses.get(i).imageUrl();
 
-        city = businesses.get(i).location().city();
-        state = businesses.get(i).location().stateCode();
+        this.reviewSnippet =reviewSnippet;
 
+        this.imageURL = imageURL;
+
+        this.city =city;
+        this.state = state;
 
     }
 
     public String getAddress() {
-        return address;
+        return address+ city+state;
     }
 
     public String getPhoneNumber() {
@@ -59,6 +55,8 @@ public class Restaurant
     }
 
     public double getDistance() {
+        // convert meters to miles
+        distance = distance / 1609.34;
         return distance;
     }
 
@@ -78,10 +76,6 @@ public class Restaurant
     public String getName()
     {
         return  name;
-    }
-    public String restaurantImage()
-    {
-        return imageURL;
     }
     public String getState()
     {

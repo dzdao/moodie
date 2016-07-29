@@ -58,7 +58,7 @@
         android:paddingLeft="10dp"
         android:gravity="bottom">
 
-        <Button
+  <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood1"
@@ -73,9 +73,11 @@
             android:textSize="50px"
             android:layout_marginTop="84dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
-        <Button
+
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood4"
@@ -90,7 +92,8 @@
             android:textColor="#fffdfd"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
     </LinearLayout>
 
@@ -109,24 +112,22 @@
         android:paddingRight="10dp"
         android:gravity="bottom">
 
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood2"
             android:background="#b9080000"
             android:minWidth="265dp"
             android:minHeight="210dp"
-            android:layout_alignTop="@+id/mood1"
-            android:layout_alignParentEnd="true"
-            android:text="#Sad"
-            android:adjustViewBounds="true"
-            android:textSize="50px"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginBottom="5dp"/>
 
-        <Button
+            android:adjustViewBounds="true"
+
+            android:textColor="#ffffff"
+            android:layout_marginTop="84dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
+
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mood3"
@@ -141,7 +142,8 @@
             android:textColor="#fffefe"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonClicked"/>
 
     </LinearLayout>
 
