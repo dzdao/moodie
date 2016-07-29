@@ -32,20 +32,14 @@ package com.example.rui.location;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
-import android.widget.Button;
-import android.widget.EditText;
-import android.content.Intent;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.preference.PreferenceManager;
-import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -209,6 +203,13 @@ public class Restaurant_Results extends AppCompatActivity
                 }
                 Picasso.with(getApplicationContext()).load(businesses.get(0).imageUrl()).resize(250, 250).centerInside().into(img);
                 Picasso.with(getApplicationContext()).load(restaurant[1].getImageURL()).resize(250,250).centerInside().into(img2);
+                Picasso.with(getApplicationContext()).load(restaurant[2].getImageURL()).resize(250,250).centerInside().into(img3);
+                Picasso.with(getApplicationContext()).load(restaurant[3].getImageURL()).resize(250,250).centerInside().into(img4);
+                Picasso.with(getApplicationContext()).load(restaurant[4].getImageURL()).resize(250,250).centerInside().into(img5);
+                Picasso.with(getApplicationContext()).load(restaurant[5].getImageURL()).resize(250,250).centerInside().into(img6);
+                Picasso.with(getApplicationContext()).load(restaurant[6].getImageURL()).resize(250,250).centerInside().into(img7);
+                Picasso.with(getApplicationContext()).load(restaurant[7].getImageURL()).resize(250,250).centerInside().into(img8);
+
                 //Picasso.with(getApplicationContext()).load(businesses.get(2).imageUrl()).resize(250,250).centerInside().into(img3);
                 //Picasso.with(getApplicationContext()).load(businesses.get(3).imageUrl()).resize(250,250).centerInside().into(img4);
                 //Picasso.with(getApplicationContext()).load(businesses.get(4).imageUrl()).resize(250,250).centerInside().into(img5);
@@ -217,9 +218,7 @@ public class Restaurant_Results extends AppCompatActivity
                 //Picasso.with(getApplicationContext()).load(businesses.get(7).imageUrl()).resize(250,250).centerInside().into(img8);
                 final String finalBusinessAddress = businessAddress;
                 final double finalDistance = distance;
-                TextView text = (TextView) findViewById(R.id.test);
-                String display = restaurant[0].getName() + "   " + restaurant[0].getPhoneNumber();
-                text.setText(display);
+
                 img.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
