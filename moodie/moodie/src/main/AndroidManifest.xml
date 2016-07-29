@@ -20,10 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ResultsActivity"
-            android:label="@string/title_activity_results"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Restaurant_Results" />
+        <activity android:name=".RestaurantDetails"></activity>
     </application>
 
 </manifest>

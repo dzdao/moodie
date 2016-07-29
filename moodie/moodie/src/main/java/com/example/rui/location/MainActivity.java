@@ -31,19 +31,14 @@ package com.example.rui.location;
 //import retrofit2.Response;
 
 
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.Button;
-import android.widget.EditText;
 import android.content.Intent;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.preference.PreferenceManager;
-import android.content.SharedPreferences;
 import android.view.View;
+
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.app.Activity;
 
@@ -63,141 +58,112 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
+// glide libraries for gif image loading
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class MainActivity extends AppCompatActivity
 {
-    String location = "you're @ ";
-    double lat = 0.0;
-    double lon = 0.0;
-
-    // default parameters
-    String term = "hot and new"; //used to always look for food places
-    String numberOfResults = "5"; //limit the number of results to 10 businesses
-    String category_filter = "food";
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
-
-    int search_category;
+    String happyUrl, sadUrl, healthyUrl, adventurousUrl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.test);
 
-        //getCoordinates();
-        //updateCoordinates();
-        //yelp();
+//        final ImageButton mood1=(ImageButton) findViewById(R.id.mood1); // button for happy mood
+//        final ImageButton mood2=(ImageButton) findViewById(R.id.mood2); // button for sad mood
+//        final ImageButton mood3=(ImageButton) findViewById(R.id.mood3); // button for adventurous mood
+//        final ImageButton mood4=(ImageButton) findViewById(R.id.mood4); // button for healthy mood
+//
+//        // set Giphy images to buttons
         giphy();
+//
+//        Glide.with(this).load(happyUrl).into(mood1);
+//        Glide.with(this).load(sadUrl).into(mood2);
+//        Glide.with(this).load(healthyUrl).into(mood3);
+//        Glide.with(this).load(adventurousUrl).into(mood4);
 
+//        // on click send request for entertainment to next activity
+//        mood1.setOnTouchListener(new View.OnTouchListener()
+//        {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event)
+//            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+//                toRestaurantResults.putExtra("term", "entertainment");
+//                startActivity(toRestaurantResults);
+//                return false;
+//            }
+//
+//        });
+//
+//        // on click send request for dessert to next activity
+//        mood2.setOnTouchListener(new View.OnTouchListener()
+//        {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event)
+//            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+//                toRestaurantResults.putExtra("term", "dessert");
+//                startActivity(toRestaurantResults);
+//                return false;
+//            }
+//
+//        });
+//
+//        // on click send request for hot and new to next activity
+//        mood3.setOnTouchListener(new View.OnTouchListener()
+//        {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event)
+//            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+//                toRestaurantResults.putExtra("term", "hot and new");
+//                startActivity(toRestaurantResults);
+//                return false;
+//            }
+//        });
+//
+//        // on click send request for healthy to next activity
+//        mood4.setOnTouchListener(new View.OnTouchListener()
+//        {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event)
+//            { Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+//                toRestaurantResults.putExtra("term", "healthy");
+//                startActivity(toRestaurantResults);
+//                return false;
+//            }
+//        });
     }
 
-
-    private void updateCoordinates() {
-        TextView text = (TextView) findViewById(R.id.textLocation);
-        String currentLocation = location + "Latitude: " + lat + " Longitude: " + lon;
-        text.setText(currentLocation);
-
-    }
-
-
-    private void getCoordinates() {
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-        if (loc == null) {
-            loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (loc == null) {
-                lon = 100;
-                lat = 100;
-            }
-        }
-        lon = loc.getLongitude();
-        lat = loc.getLatitude();
-    }
-
-    private void yelp()
-    {
-        String consumerKey ="GH0hCC83JR1G-T_7T54jxw";
-        String consumerSecret="Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
-        String token="VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
-        String tokenSecret="QYcm0Coq4XRfjLTSfyCv4Zlb38c";
-        YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey,consumerSecret , token,tokenSecret );
-        YelpAPI yelpAPI = apiFactory.createAPI();
-
-        Map<String, String> params = new HashMap<>();
-        // general params
-        params.put("term", term);
-        params.put("limit", numberOfResults);
-        params.put("category_filter", category_filter);
-
-        // build a coordinate object for the Yelp API to understand
-        CoordinateOptions coordinate = CoordinateOptions.builder()
-                .latitude(lat)
-                .longitude(lon).build();
-
-        // call request to API
-        Call<SearchResponse> call = yelpAPI.search(coordinate, params);
-
-        // setup for asynchronous request
-        Callback<SearchResponse> callback = new Callback<SearchResponse>() {
-
-            //TextView con = (TextView) findViewById(R.id.resultsView);
-            String con_test = "";
-            TextView con = (TextView) findViewById(R.id.resultView);
-            ImageView img = (ImageView) findViewById(R.id.image);
-            ImageView img2 = (ImageView) findViewById(R.id.image2);
-            ImageView img3 = (ImageView) findViewById(R.id.image3);
-            ImageView img4 = (ImageView) findViewById(R.id.image4);
-            ImageView img5 = (ImageView) findViewById(R.id.image5);
-            String gifURL="http://giphy.com/gifs/christian-bale-american-psycho-christiam-9cWlkwWUTgpOg";
-
-            @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
-            {
-                SearchResponse searchResponse = response.body();
-                ArrayList<Business> businesses = searchResponse.businesses();
-                for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
-                {
-                    Restaurant restaurant = new Restaurant(businesses, i);
-
-                    con_test += restaurant.toString()+'\n'+'\n';
-
-                    con.setText(con_test);
-                    Picasso.with(getApplicationContext()).load(restaurant.getImageURL()).into(img);
-                    Picasso.with(getApplicationContext()).load(gifURL).into(img2);
-                }
-            }
-
-                @Override
-                public void onFailure (Call<SearchResponse> call, Throwable t)
-                {
-                    // HTTP error happened, do something to handle it.
-                    con_test = "fail";
-                    con.setText(con_test);
-                }
-
-            };
-
-        // make the asynchronous request
-        call.enqueue(callback);
-    }
-
-    private void giphy() {
+    public void giphy() {
 
         // create Mood object and pass the context of this activity to the class
-        Mood myMood = new Mood(this, this);
+        Mood happyMood = new Mood(this, this, "happy");
+        Mood sadMood = new Mood(this, this, "sad");
+        Mood healthyMood = new Mood(this, this, "healthy");
+        Mood adventurousMood = new Mood(this, this, "adventurous");
 
-        myMood.getGiphy();
-
+        happyUrl = happyMood.getGiphy();
+        //happyUrl = happyMood.getUrl();
+        //sadUrl = sadMood.getGiphy();
+        //healthyUrl = healthyMood.getGiphy();
+        //adventurousUrl = adventurousMood.getGiphy();
+//
+//        TextView text = (TextView)findViewById(R.id.textBox);
+//
+//
+//        if(happyUrl != null)
+//            text.append(happyUrl);
+//        else
+//            text.append("Failed...");
 
     }
-
 }

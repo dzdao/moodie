@@ -17,8 +17,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
+import android.os.AsyncTask;
+
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Handler;
@@ -47,33 +51,156 @@ public class Mood
     private final Handler handler;
     public static final String TAG = Mood.class.getSimpleName();
     public Activity activity;
+    String moodToSearchFor;
+    String giphyUrl;
 
     // constructor
-    public Mood(Context context, Activity activity) {
+    public Mood(Context context, Activity activity, String mood) {
 
         this.context = context;
         this.activity = activity;
         handler = new Handler(context.getMainLooper());
+        this.moodToSearchFor = mood;
+    }
+
+    private class RunGiphyAPI extends AsyncTask<String, Void, String>
+    {
+        protected String doInBackground(String... params) {
+
+            String apiKey = "dc6zaTOxFJmzC";
+
+            String imageUrl = "http://api.giphy.com/v1/gifs/search?q=" +
+                    moodToSearchFor + "&api_key=" + apiKey;
+
+            // check for network connection
+            if(networkIsActive()) {
+
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(imageUrl)
+                        .build();
+
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+
+                    @Override
+                    public void onFailure(Call request, IOException e) {
+                        runOnUiThread(new Runnable() {
+
+                            public void run() {
+                                // toggleRefresh();
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(Call request, Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                // debug: asynch call works here for url
+                            }
+                        });
+                        try {
+                            String jsonData = response.body().string();
+                            if (response.isSuccessful()) {
+                                giphyData = getGif(jsonData);
+                                Log.v(TAG, "Giphy Gif Data from Response: " + giphyData);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        giphyUrl = pickRandomGiphyUrl();
+
+                                        // debug: asynch call works here for url
+                                    }
+                                });
+                            } else {
+                                Log.i(TAG, "Response Unsuccessful");
+                            }
+                        }
+                        catch (IOException e) {
+                            Log.e(TAG, "Exception Caught: ", e);
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            return giphyUrl;
+        }
+
+        //@Override
+        protected void onProgressUpdate() {
+            //displayProgressBar("Loading");
+        }
+
+        //@Override
+        protected String onPostExecute() {
+            TextView textView = (TextView)activity.findViewById(R.id.textBox);
+
+            if(giphyUrl!= null)
+                textView.append(" " + giphyUrl);
+            else
+                textView.append("mood is not working");
+
+            return giphyUrl;
+        }
 
     }
 
-    public void getGiphy() {
-        String apiKey = "dc6zaTOxFJmzC";
 
-        String imageUrl = "http://api.giphy.com/v1/gifs/search?q=happy&api_key=dc6zaTOxFJmzC";
 
-        // check for network connection
-        if(networkIsActive()) {
+    public String getGiphy() {
 
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(imageUrl)
-                    .build();
+        TextView textView = (TextView)activity.findViewById(R.id.textBox);
 
-            Call call = client.newCall(request);
-            call.enqueue(new Callback() {
+        RunGiphyAPI task = new RunGiphyAPI();
+
+        if(moodToSearchFor!= null)
+            textView.append(moodToSearchFor);
+        else
+            textView.append("mood is null");
+
+        task.execute(moodToSearchFor);
+        giphyUrl = task.onPostExecute();
+
+        if(giphyUrl!= null)
+            textView.append(giphyUrl);
+        else
+            textView.append(" url is null");
+
+        return giphyUrl;
+        //return giphyUrl;
+
+//        String apiKey = "dc6zaTOxFJmzC";
+//
+//        String imageUrl = "http://api.giphy.com/v1/gifs/search?q=" +
+//                moodToSearchFor + "&api_key=" + apiKey;
+//
+//        // check for network connection
+//        if(networkIsActive()) {
+//
+//            OkHttpClient client = new OkHttpClient();
+//            Request request = new Request.Builder()
+//                    .url(imageUrl)
+//                    .build();
+//
+//            Call call = client.newCall(request);
+//            call.enqueue(new Callback() {
+////                @Override
+////                public void onFailure(Request request, IOException e) {
+////                    runOnUiThread(new Runnable() {
+////
+////                        public void run() {
+////                            // toggleRefresh();
+////                        }
+////                    });
+////                }
+//
 //                @Override
-//                public void onFailure(Request request, IOException e) {
+//                public void onFailure(Call request, IOException e) {
 //                    runOnUiThread(new Runnable() {
 //
 //                        public void run() {
@@ -81,47 +208,49 @@ public class Mood
 //                        }
 //                    });
 //                }
-
-                @Override
-                public void onFailure(Call request, IOException e) {
-                    runOnUiThread(new Runnable() {
-
-                        public void run() {
-                            // toggleRefresh();
-                        }
-                    });
-                }
-
-                @Override
-                public void onResponse(Call request, Response response) throws IOException {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                        }
-                    });
-                    try {
-                        String jsonData = response.body().string();
-                        if (response.isSuccessful()) {
-                            giphyData = getGif(jsonData);
-                            Log.v(TAG, "Giphy Gif Data from Response: " + giphyData);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    updateDisplay();
-                                }
-                            });
-                        } else {
-                            Log.i(TAG, "Response Unsuccessful");
-                        }
-                    }
-                    catch (IOException e) {
-                        Log.e(TAG, "Exception Caught: ", e);
-                    }
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
+//
+//                @Override
+//                public void onResponse(Call request, Response response) throws IOException {
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                        }
+//                    });
+//                    try {
+//                        String jsonData = response.body().string();
+//                        if (response.isSuccessful()) {
+//                            giphyData = getGif(jsonData);
+//                            Log.v(TAG, "Giphy Gif Data from Response: " + giphyData);
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    giphyUrl = pickRandomGiphyUrl();
+//
+////                                    TextView view = (TextView)activity.findViewById(R.id.textBox);
+////                                    if(giphyUrl != null)
+////                                        view.append(giphyUrl);
+////                                    else
+////                                        view.append("not working");
+//
+//                                }
+//
+//                            });
+//                        } else {
+//                            Log.i(TAG, "Response Unsuccessful");
+//                        }
+//                    }
+//                    catch (IOException e) {
+//                        Log.e(TAG, "Exception Caught: ", e);
+//                    }
+//                    catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
+//        }
+//
+//
+//
+//        return giphyUrl;
     }
 
     private GiphyData[] getGif(String jsonData) throws JSONException {
@@ -165,7 +294,7 @@ public class Mood
     private void runOnUiThread(Runnable r) {
         handler.post(r);
     }
-    private void updateDisplay() {
+    private String pickRandomGiphyUrl() {
 
 //        String gifUrl = giphyData.getUrl();
 //        Log.i(TAG, "updatedDisplay GIF url: " + gifUrl);
@@ -176,11 +305,32 @@ public class Mood
 
         GiphyData gif = gifs[rand];
 
-        String gifUrl = gif.getUrl();
+        return gif.getUrl();
 
-        ImageView image = (ImageView)activity.findViewById(R.id.gifImageView);
+        //return gifUrl;
 
-        Glide.with(this.activity).load(gifUrl).into(image);
+        //giphyUrl = gif.getUrl();
+        //TextView text = (TextView)activity.findViewById(R.id.textBox);
 
+        //text.append(giphyUrl);
+//        ImageButton image = (ImageButton) activity.findViewById(R.id.mood1);
+//
+//        ImageButton image2 = (ImageButton) activity.findViewById(R.id.mood2);
+//        ImageButton image3 = (ImageButton) activity.findViewById(R.id.mood3);
+//        ImageButton image4 = (ImageButton) activity.findViewById(R.id.mood4);
+//        Glide.with(this.activity).load(giphyUrl).into(image);
+//        Glide.with(this.activity).load(gifUrl).into(image2);
+//        Glide.with(this.activity).load(gifUrl).into(image3);
+//        Glide.with(this.activity).load(gifUrl).into(image4);
+    }
+
+    public String getUrl() {
+
+        TextView text = (TextView)activity.findViewById(R.id.textBox);
+        if(giphyUrl != null)
+            text.append(giphyUrl);
+        else
+            text.append("no get url");
+        return giphyUrl;
     }
 }
