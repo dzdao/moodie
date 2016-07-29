@@ -25,19 +25,42 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantDetails extends AppCompatActivity {
-    String details;
+     String name;
+     String address;
+    String phoneNumber;
+    double distance;
+     String city;
+     String imageURL;
+     String reviewSnippet;
+     String state;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
         //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
-        this.details=getTerm.getString("results");
+        this.name=getTerm.getString("name");
+        this.address=getTerm.getString("address");
+        this.phoneNumber=getTerm.getString("phoneNumber");
+        this.distance=getTerm.getDouble("distance");
+        this.state=getTerm.getString("state");
+        this.city=getTerm.getString("city");
+        this.reviewSnippet=getTerm.getString("reviewSnippet");
+
+        this.imageURL=getTerm.getString("imageURL");
+
+        String RestaurantData=name +'\n' +
+                this.phoneNumber+'\n'+
+                this.address +'\n'+
+                this.city+", "+this.state+'\n'+
+                this.reviewSnippet+'\n'+'\n'+
+                this.imageURL;
 
         TextView dets = (TextView) findViewById(R.id.details);
-        dets.setText(details);
+        dets.setText(RestaurantData);
 
     }
 

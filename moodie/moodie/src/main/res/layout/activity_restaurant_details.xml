@@ -13,8 +13,8 @@
             android:layout_gravity="center_horizontal">
 
                 <TextView
-                    android:layout_width="353dp"
-                    android:layout_height="169dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="dETAILS GO HERE"
                     android:id="@+id/details"
                     android:textSize="24dp"/>
