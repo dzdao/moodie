@@ -33,9 +33,11 @@ package com.example.rui.location;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,6 +63,7 @@ import retrofit2.Response;
 public class Restaurant_Results extends AppCompatActivity
 {
     String location = "you're @ ";
+    String cityLocation;
     double lat = 0.0;
     double lon = 0.0;
 
@@ -70,6 +73,9 @@ public class Restaurant_Results extends AppCompatActivity
     String category_filter = "food";
 
     Restaurant[] restaurant;
+
+
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -92,7 +98,7 @@ public class Restaurant_Results extends AppCompatActivity
 
         Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
         //toRestaurantResults.putExtra("response", yelpsearchResponse);
-        getCoordinates();
+//        getCoordinates();
 
         String con_test = "";
 
@@ -106,15 +112,30 @@ public class Restaurant_Results extends AppCompatActivity
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-        if (loc == null) {
-            loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (loc == null) {
-                lon = 100;
-                lat = 100;
-            }
+//        if (loc == null) {
+//            loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if (loc == null) {
+//                lon = 100;
+//                lat = 100;
+//            }
+//        }
+//        lon = loc.getLongitude();
+//        lat = loc.getLatitude();
+
+        if (loc != null) {
+
+            // getLastKnownLocation returns the most recent location request
+            lat = loc.getLatitude();
+            lon = loc.getLongitude();
         }
-        lon = loc.getLongitude();
-        lat = loc.getLatitude();
+        else {
+            // getLastKnownLocation did not find a recent location request
+            // prompt the OS for a new location or set a default location
+            // lm.requestLocationUpdates();
+
+            lat = 33.873825;
+            lon = -117.924372;
+        }
     }
 
     private void yelp() {
@@ -124,20 +145,34 @@ public class Restaurant_Results extends AppCompatActivity
         String tokenSecret = "QYcm0Coq4XRfjLTSfyCv4Zlb38c";
         YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey, consumerSecret, token, tokenSecret);
         YelpAPI yelpAPI = apiFactory.createAPI();
+        // call request to API
+        Call<SearchResponse> call;
 
         Map<String, String> params = new HashMap<>();
+
         // general params
         params.put("term", term);
         params.put("limit", numberOfResults);
         params.put("category_filter", category_filter);
 
-        // build a coordinate object for the Yelp API to understand
-        CoordinateOptions coordinate = CoordinateOptions.builder()
-                .latitude(lat)
-                .longitude(lon).build();
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        cityLocation = sharedPref.getString("location", null);
 
-        // call request to API
-        Call<SearchResponse> call = yelpAPI.search(coordinate, params);
+        if(cityLocation != "") {
+            // if the user entered a city location, use that for the search
+            call = yelpAPI.search(cityLocation, params);
+        }
+        else {
+
+            // user did not enter a city location, so use their GPS
+            getCoordinates();
+
+            // build a coordinate object for the Yelp API to understand
+            CoordinateOptions coordinate = CoordinateOptions.builder()
+                    .latitude(lat)
+                    .longitude(lon).build();
+            call = yelpAPI.search(coordinate, params);
+        }
 
         // setup for asynchronous request
         Callback<SearchResponse> callback = new Callback<SearchResponse>() {
@@ -169,18 +204,26 @@ public class Restaurant_Results extends AppCompatActivity
                 //pass results to next activity
                 final String businessName = businesses.get(0).name();
                 String businessAddress;
+                double distance;
+
                 try {
                     businessAddress = businesses.get(0).location().address().get(0);
+                    distance = businesses.get(0).distance();
                 } catch (Exception e) {
+
+                    // address may be unavailable for certain businesses
                     businessAddress = "no address available";
+
+                    // yelp API does not provide a distance when call request does not use GPS coordinates
+                    distance = 0;
                 }
 
                 final String businessPhoneNumber = businesses.get(0).displayPhone();
-                double distance = businesses.get(0).distance();
                 final String city = businesses.get(0).location().city();
                 final String state = businesses.get(0).location().stateCode();
                 final String reviewSnippet = businesses.get(0).snippetText();
                 final String imageURL = businesses.get(0).imageUrl();
+
                 // convert meters to miles
                 distance = distance / 1609.34;
 
@@ -189,14 +232,17 @@ public class Restaurant_Results extends AppCompatActivity
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
                 {
                     String address;
+                    double dist;
                     try {
                         address =businesses.get(i).location().address().get(i) ;
+                        dist = businesses.get(i).distance();
                     }
                     catch (Exception e){
                         address = "no address available";
+                        dist = 0;
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
-                            address, businesses.get(i).distance(), businesses.get(i).snippetText(),
+                            address, dist, businesses.get(i).snippetText(),
                             businesses.get(i).imageUrl(),businesses.get(i).location().city(),businesses.get(i).location().stateCode());
                 }
 
