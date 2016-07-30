@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity
 
         Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
         final EditText specLocation = (EditText) findViewById(R.id.inputLocation); // EditText for optional specified location
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
         // grab the city location from EditText if available
         cityLocation = specLocation.getText().toString();
         toRestaurantResults.putExtra("cityLocation", cityLocation);
