@@ -63,14 +63,11 @@ import retrofit2.Response;
 public class Restaurant_Results extends AppCompatActivity
 {
     String location = "you're @ ";
-<<<<<<< HEAD
-    double lat = 33.872237;
-    double lon = -117.870336;
-=======
+
+
     String cityLocation;
-    double lat = 0.0;
-    double lon = 0.0;
->>>>>>> ad5e7e9cd20674b0147b0631138e2cdadd2bda0f
+    double lat = 33.873825;
+    double lon = -117.924372;
 
     // default parameters
     String term = ""; //used to always look for food places
@@ -92,7 +89,7 @@ public class Restaurant_Results extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        restaurant = new Restaurant[8];
+        restaurant = new Restaurant[Integer.parseInt(numberOfResults)];
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant__results);
@@ -100,17 +97,13 @@ public class Restaurant_Results extends AppCompatActivity
         //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
         this.term=getTerm.getString("term");
-
+        this.cityLocation=getTerm.getString("cityLocation");
         Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-        //toRestaurantResults.putExtra("response", yelpsearchResponse);
-<<<<<<< HEAD
-        //getCoordinates();
-=======
-//        getCoordinates();
->>>>>>> ad5e7e9cd20674b0147b0631138e2cdadd2bda0f
+        toRestaurantResults.putExtra("term", term);
+        toRestaurantResults.putExtra("cityLocation", cityLocation);
+
 
         String con_test = "";
-
         yelp();
 
     }
@@ -121,30 +114,21 @@ public class Restaurant_Results extends AppCompatActivity
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-//        if (loc == null) {
-//            loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//            if (loc == null) {
-//                lon = 100;
-//                lat = 100;
-//            }
-//        }
-//        lon = loc.getLongitude();
-//        lat = loc.getLatitude();
-
-        if (loc != null) {
+        //REDUNDANT setting a defualt location here? why dont we use a default from default
+       // if (loc != null) {
 
             // getLastKnownLocation returns the most recent location request
             lat = loc.getLatitude();
             lon = loc.getLongitude();
-        }
-        else {
+       // }
+       // else {
             // getLastKnownLocation did not find a recent location request
             // prompt the OS for a new location or set a default location
             // lm.requestLocationUpdates();
 
-            lat = 33.873825;
-            lon = -117.924372;
-        }
+        //    lat = 33.873825;
+           // lon = -117.924372;
+       // }
     }
 
     private void yelp() {
@@ -164,8 +148,6 @@ public class Restaurant_Results extends AppCompatActivity
         params.put("limit", numberOfResults);
         params.put("category_filter", category_filter);
 
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        cityLocation = sharedPref.getString("location", null);
 
         if(cityLocation != "") {
             // if the user entered a city location, use that for the search
@@ -201,43 +183,11 @@ public class Restaurant_Results extends AppCompatActivity
                 ImageView img8 = (ImageView) findViewById(R.id.image8);
 
 
-                //res=response.body().toString();
+
 
                 SearchResponse searchResponse = response.body();
                 final ArrayList<Business> businesses = searchResponse.businesses();
-                // TextView text = (TextView) findViewById(R.id.resultView);
-                //String businessString= businesses.get(0).toString();
 
-                //text.setText(businessString);
-
-                //pass results to next activity
-                final String businessName = businesses.get(0).name();
-                String businessAddress;
-                double distance;
-
-                try {
-                    businessAddress = businesses.get(0).location().address().get(0);
-                    distance = businesses.get(0).distance();
-                } catch (Exception e) {
-
-                    // address may be unavailable for certain businesses
-                    businessAddress = "no address available";
-
-                    // yelp API does not provide a distance when call request does not use GPS coordinates
-                    distance = 0;
-                }
-
-                final String businessPhoneNumber = businesses.get(0).displayPhone();
-                final String city = businesses.get(0).location().city();
-                final String state = businesses.get(0).location().stateCode();
-                final String reviewSnippet = businesses.get(0).snippetText();
-                final String imageURL = businesses.get(0).imageUrl();
-
-                // convert meters to miles
-                distance = distance / 1609.34;
-
-
-                // text.setText(res);
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++)
                 {
                     String address;

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity
     String searchTermForSadMood = "dessert";
     String searchTermForadventurousMood = "food";
     String searchTermForhealthyMood = "healthy";
-    String location;
+    String cityLocation;
 
 
     @Override
@@ -50,11 +50,8 @@ public class MainActivity extends AppCompatActivity
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         // grab the city location from EditText if available
-        location = specLocation.getText().toString();
-        
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("location", location);
-        editor.commit();
+        cityLocation = specLocation.getText().toString();
+        toRestaurantResults.putExtra("cityLocation", cityLocation);
 
         switch (v.getId()) {
             case (R.id.mood1):
