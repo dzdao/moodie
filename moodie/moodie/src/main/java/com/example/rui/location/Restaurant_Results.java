@@ -67,8 +67,8 @@ import retrofit2.Response;
 public class Restaurant_Results extends AppCompatActivity
 {
     String location = "you're @ ";
-    double lat = 0.0;
-    double lon = 0.0;
+    double lat = 33.872237;
+    double lon = -117.870336;
 
     // default parameters
     String term = ""; //used to always look for food places
@@ -99,7 +99,7 @@ public class Restaurant_Results extends AppCompatActivity
 
         Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
         //toRestaurantResults.putExtra("response", yelpsearchResponse);
-        getCoordinates();
+        //getCoordinates();
 
         String con_test = "";
 
