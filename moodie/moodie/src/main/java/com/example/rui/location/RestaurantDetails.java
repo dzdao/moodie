@@ -19,6 +19,8 @@ public class RestaurantDetails extends AppCompatActivity {
     String state;
 
     String term;
+
+    String cityLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -59,7 +61,7 @@ public class RestaurantDetails extends AppCompatActivity {
         dets2.setText(RestaurantData2);
 
         this.term=getTerm.getString("term");
-
+        this.cityLocation=getTerm.getString("cityLocation");
     }
 
     @Override
@@ -68,6 +70,7 @@ public class RestaurantDetails extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = new Intent(this, Restaurant_Results.class);
         intent.putExtra("term",term);
+        intent.putExtra("cityLocation",cityLocation);
         startActivity(intent);
     }
 
