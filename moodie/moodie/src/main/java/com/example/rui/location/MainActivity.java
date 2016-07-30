@@ -2,9 +2,12 @@ package com.example.rui.location;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.preference.PreferenceManager;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -12,6 +15,8 @@ public class MainActivity extends AppCompatActivity
     String searchTermForSadMood = "dessert";
     String searchTermForadventurousMood = "food";
     String searchTermForhealthyMood = "healthy";
+    String location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +37,25 @@ public class MainActivity extends AppCompatActivity
         adventurous.getGiphy();
         Mood healthy = new Mood(this, this, "healthy", mood4);
         healthy.getGiphy();
+
+
+
     }
 
     // on click, send request for a term to next activity (using xml to call function)
     public void buttonClicked(View v) {
+
         Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+        final EditText specLocation = (EditText) findViewById(R.id.inputLocation); // EditText for optional specified location
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // grab the city location from EditText if available
+        location = specLocation.getText().toString();
+        
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("location", location);
+        editor.commit();
+
         switch (v.getId()) {
             case (R.id.mood1):
                 toRestaurantResults.putExtra("term", searchTermForHappyMood);
