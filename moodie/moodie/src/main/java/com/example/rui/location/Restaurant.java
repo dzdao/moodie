@@ -76,7 +76,7 @@ public class Restaurant
     }
     public String toString()
     {
-        return this.getName() +'\n' +
+        return
                 this.getPhoneNumber()+'\n'+
                 this.getAddress() +'\n'+
                 this.getCity()+", "+this.getState()+'\n'+

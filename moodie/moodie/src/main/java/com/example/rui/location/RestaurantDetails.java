@@ -64,14 +64,5 @@ public class RestaurantDetails extends AppCompatActivity {
         this.cityLocation=getTerm.getString("cityLocation");
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(this, Restaurant_Results.class);
-        intent.putExtra("term",term);
-        intent.putExtra("cityLocation",cityLocation);
-        startActivity(intent);
-    }
 
 }
