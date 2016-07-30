@@ -1,20 +1,10 @@
 package com.example.rui.location;
 
-import com.yelp.clientlib.entities.Business;
-import com.yelp.clientlib.entities.SearchResponse;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Response;
-
 /**
  * Created by rui on 7/21/16.
  */
 public class Restaurant
 {
-
-
     private String name;
     private String address;
     private String phoneNumber;
@@ -25,7 +15,7 @@ public class Restaurant
     private String state;
 
     public Restaurant( String name , String phoneNumber,String address,
-                       double distance, String reviewSnippet,String imageURL, String state,String city)
+                       double distance, String reviewSnippet,String imageURL, String city, String state)
     {
         this. name = name;
         this.phoneNumber=phoneNumber;
@@ -39,8 +29,7 @@ public class Restaurant
 
     }
 
-    public String getAddress() {
-        return address+ city+state;
+    public String getAddress() {return address+ city + ", " + state;
     }
 
     public String getPhoneNumber() {
