@@ -1,6 +1,5 @@
 package com.example.rui.location;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -21,33 +20,31 @@ public class RestaurantDetails extends AppCompatActivity {
     String term;
 
     String cityLocation;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
 
         //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
 
-        this.name=getTerm.getString("name");
-        this.imageURL=getTerm.getString("imageURL");
-        this.address=getTerm.getString("address");
-        this.phoneNumber=getTerm.getString("phoneNumber");
-        this.distance=getTerm.getDouble("distance");
-        this.state=getTerm.getString("state");
-        this.city=getTerm.getString("city");
-        this.reviewSnippet=getTerm.getString("reviewSnippet");
+        this.name = getTerm.getString("name");
+        this.imageURL = getTerm.getString("imageURL");
+        this.address = getTerm.getString("address");
+        this.phoneNumber = getTerm.getString("phoneNumber");
+        this.distance = getTerm.getDouble("distance");
+        this.city = getTerm.getString("city");
+        this.state = getTerm.getString("state");
+        this.reviewSnippet = getTerm.getString("reviewSnippet");
 
-        String RestaurantDataName= name;
-        String RestaurantData2= "Phone Number: " +
-                this.phoneNumber+"\n\n"+
+        String RestaurantDataName = name;
+        String RestaurantData2 = "Phone Number: " +
+                this.phoneNumber + "\n\n" +
                 "Address: " +
-                this.address +'\n'+
-                "                 " +
-                this.city+", "+this.state+"\n\n" +
+                this.address + "\n\n" +
                 "Review: " +
-                this.reviewSnippet+ "\n\n";
+                this.reviewSnippet + "\n\n";
 
         ImageView img = (ImageView) findViewById(R.id.image);
 
@@ -60,9 +57,8 @@ public class RestaurantDetails extends AppCompatActivity {
         TextView dets2 = (TextView) findViewById(R.id.details2);
         dets2.setText(RestaurantData2);
 
-        this.term=getTerm.getString("term");
-        this.cityLocation=getTerm.getString("cityLocation");
+        this.term = getTerm.getString("term");
+        this.cityLocation = getTerm.getString("cityLocation");
     }
-
 
 }
