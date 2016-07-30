@@ -1,51 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/imageedit_7_6436331298"
-    android:orientation="vertical"
-    tools:context="com.example.rui.location.Restaurant_Results">
+    tools:context=".MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/imageedit_7_6436331298"
+        android:orientation="vertical"
+        tools:context="com.example.rui.location.Restaurant_Results">
 
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#008cbb"
-            android:textSize="50dp"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:adjustViewBounds="true"
-            android:layout_gravity="top"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:paddingBottom="20dp" />
-
-        <TextView
-            android:id="@+id/details2"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:gravity="center"
-            android:textColor="#008cbb" />
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
 
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#008cbb"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="top"
+                android:adjustViewBounds="true"
+                android:paddingBottom="20dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp" />
+
+            <TextView
+                android:id="@+id/details2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:textColor="#008cbb"
+                android:textSize="30dp" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
