@@ -29,18 +29,11 @@ public class Restaurant
     {
         this. name = name;
         this.phoneNumber=phoneNumber;
-
         this.address=address;
         this. phoneNumber = phoneNumber;
-
         this.distance = distance;
-
-
-
         this.reviewSnippet =reviewSnippet;
-
         this.imageURL = imageURL;
-
         this.city =city;
         this.state = state;
 

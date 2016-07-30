@@ -1,7 +1,5 @@
 package com.example.rui.location;
 
-
-
 // libraries needed for Giphy Calls
 import android.app.Activity;
 import android.content.Context;
@@ -12,37 +10,28 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Bundle;
 import android.util.Log;
-import android.os.AsyncTask;
-
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 import android.os.Handler;
-
 import java.io.IOException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-//import org.json.JSONObject;
-//import java.io.IOException;
-
-
-// glide libraries for gif image loading
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-
+//import android.widget.TextView;
+//import java.io.IOException;
+//import android.widget.ImageView;
+//import android.widget.Toast;
+//import android.widget.Button;
+//import android.view.View;
+//import android.content.Context;
+//import android.content.res.TypedArray;
+//import android.os.Bundle;
+//import android.os.AsyncTask;
+//import com.bumptech.glide.load.engine.DiskCacheStrategy;
+//import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+//import com.bumptech.glide.request.animation.GlideAnimation;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class Mood
 {
@@ -61,7 +50,6 @@ public class Mood
         this.context = context;
         this.activity = activity;
         handler = new Handler(context.getMainLooper());
-        //this.moodToSearchFor = mood;
         this.moodToSearchFor = mood;
         this.giphyUrl = null;
         this.imgBtn = imgBtn;
@@ -174,18 +162,5 @@ public class Mood
         GiphyData gif = gifs[rand];
         giphyUrl = gif.getUrl();
         Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(260,210).fitCenter().into(imgBtn);
-
-    }
-
-    public String getUrl() {
-
-        TextView textView = (TextView)activity.findViewById(R.id.textBox);
-
-        if(giphyUrl!= null)
-            textView.append(" " + giphyUrl);
-        else
-            textView.append(" Line 369, url is not working. \n");
-
-        return giphyUrl;
     }
 }
