@@ -25,7 +25,6 @@
         android:id="@+id/logo"
         android:layout_row="0"
         android:layout_column="3"
-        android:background="#d2df08a2"
         android:minHeight="75dp"
         android:minWidth="180dp"
         android:adjustViewBounds="true"

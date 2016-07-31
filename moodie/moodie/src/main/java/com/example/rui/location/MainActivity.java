@@ -1,5 +1,6 @@
 package com.example.rui.location;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.preference.PreferenceManager;
 import android.content.SharedPreferences;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity
 
     String moodTermOne="happy";
     String moodTermTwo="sad";
-    String moodTermThree="gay";
+    String moodTermThree="adventurous";
     String moodTermFour="healthy";
 
     @Override
@@ -55,7 +57,10 @@ public class MainActivity extends AppCompatActivity
         Mood healthy = new Mood(this, this, moodTermFour , mood4);
         healthy.getGiphy();
 
-
+        //logo details
+        ImageView logoImage= (ImageView) findViewById(R.id.logo);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.logo);
+        logoImage.setImageDrawable(myDrawable);
 
     }
 
