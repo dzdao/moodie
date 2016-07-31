@@ -233,7 +233,7 @@ public class Restaurant_Results extends AppCompatActivity {
                     String address;
                     double dist;
                     try {
-                        address = businesses.get(i).location().address().get(i);
+                        address = businesses.get(i).location().address().get(0);
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available";
@@ -241,7 +241,10 @@ public class Restaurant_Results extends AppCompatActivity {
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
                             address, dist, businesses.get(i).snippetText(),
-                            businesses.get(i).imageUrl(), businesses.get(i).location().city(), businesses.get(i).location().stateCode(), businesses.get(i).ratingImgUrlLarge());
+                            businesses.get(i).imageUrl(), businesses.get(i).location().city(),
+                            businesses.get(i).location().stateCode(),
+                            businesses.get(i).ratingImgUrlLarge(),
+                            businesses.get(i).location().postalCode());
                 }
                 //Glide.with(Restaurant_Results.this).load(restaurant[0].getImageURL()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
                 Picasso.with(getApplicationContext()).load(restaurant[0].getImageURL()).resize(250, 250).centerInside().into(img);
