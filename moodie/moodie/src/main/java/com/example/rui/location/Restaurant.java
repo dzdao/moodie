@@ -19,10 +19,10 @@ public class Restaurant
     public Restaurant( String name , String phoneNumber,String address,
                        double distance, String reviewSnippet,String imageURL, String city, String state, String ratingURL)
     {
-        this. name = name;
+        this.name = name;
         this.phoneNumber=phoneNumber;
         this.address=address;
-        this. phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
         this.distance = distance;
         this.reviewSnippet =reviewSnippet;
         this.imageURL = imageURL;
@@ -31,7 +31,7 @@ public class Restaurant
         this.ratingURL=ratingURL;
     }
 
-    public String getAddress() {return address+ city + ", " + state;
+    public String getAddress() {return address + '\n' + city + ", " + state;
     }
 
     public String getPhoneNumber() {
