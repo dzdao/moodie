@@ -163,7 +163,7 @@ public class Mood
         GiphyData[] gifs = giphyData;
         Random rand = new Random();
 
-        int randomint= rand.nextInt((int)(System.currentTimeMillis()% gifs.length));
+        int randomint= rand.nextInt((int)(System.currentTimeMillis() % gifs.length));
 
 
         GiphyData gif = gifs[randomint];
