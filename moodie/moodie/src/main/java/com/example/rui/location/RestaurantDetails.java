@@ -54,7 +54,8 @@ public class RestaurantDetails extends AppCompatActivity {
         String RestaurantPhone = "Phone Number: " + this.phoneNumber + "\n";
         String RestaurantData2 = "Address: " +
                 this.address + "\n\n" +
-                this.reviewSnippet;
+                "Review: " +
+                this.reviewSnippet + "\n\n";
 
         ImageView img = (ImageView) findViewById(R.id.image);
         ImageView ratingURLimg = (ImageView) findViewById(R.id.ratingUrl);

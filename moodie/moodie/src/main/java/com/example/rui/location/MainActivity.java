@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         mood4Text.setText("#"+moodTermFour);
         message.setText(messageString);
 
+        //assign GIFs to image buttons
         Mood happy = new Mood(this, this, moodTermOne, mood1);
         happy.getGiphy();
         Mood sad = new Mood(this, this, moodTermTwo, mood2);
@@ -76,11 +77,19 @@ public class MainActivity extends AppCompatActivity
         Drawable myDrawable = getResources().getDrawable(R.drawable.logo);
         logoImage.setImageDrawable(myDrawable);
 
+
+
     }
 
     // on click, send request for a term to next activity (using xml to call function)
     public void buttonClicked(View v) {
         Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+
+        // pull and store the location the user typed
+        EditText specificLocation = (EditText) findViewById(R.id.inputLocation);
+        cityLocation = specificLocation.getText().toString();
+        toRestaurantResults.putExtra("cityLocation", cityLocation);
+
         switch (v.getId()) {
             case (R.id.mood1):
                 toRestaurantResults.putExtra("term", searchTermForHappyMood);
