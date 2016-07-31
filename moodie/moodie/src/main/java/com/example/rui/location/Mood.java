@@ -8,6 +8,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Call;
 import okhttp3.Callback;
+
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -82,6 +84,8 @@ public class Mood
                     runOnUiThread(new Runnable() {
                         public void run() {
                             // toggleRefresh();
+
+
                         }
                     });
                 }
@@ -148,8 +152,12 @@ public class Mood
         ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo net = manager.getActiveNetworkInfo();
 
+        //if no conection use image button to tell user
+        Glide.with(activity).load(R.drawable.internet_acces).placeholder(R.drawable.placeholder).override(265, 210).fitCenter().into(imgBtn);
         if(net != null && net.isAvailable())
             isActive = true;
+
+
 
         return isActive;
     }
@@ -165,9 +173,12 @@ public class Mood
 
         int randomint= rand.nextInt((int)(System.currentTimeMillis() % gifs.length));
 
-
         GiphyData gif = gifs[randomint];
         giphyUrl = gif.getUrl();
-        Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(265,210).fitCenter().into(imgBtn);
+
+
+            Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(265, 210).fitCenter().into(imgBtn);
     }
+
+
 }

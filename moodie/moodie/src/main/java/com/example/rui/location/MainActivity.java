@@ -1,7 +1,10 @@
 package com.example.rui.location;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     String moodTermFour="healthy";
 
     String messageString= "Hungry? pick a mood:";
+
+    boolean internetConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +67,16 @@ public class MainActivity extends AppCompatActivity
         mood4Text.setText("#"+moodTermFour);
         message.setText(messageString);
 
-        //assign GIFs to image buttons
-        Mood happy = new Mood(this, this, moodTermOne, mood1);
-        happy.getGiphy();
-        Mood sad = new Mood(this, this, moodTermTwo, mood2);
-        sad.getGiphy();
-        Mood adventurous = new Mood(this, this, moodTermThree, mood3);
-        adventurous.getGiphy();
-        Mood healthy = new Mood(this, this, moodTermFour , mood4);
-        healthy.getGiphy();
+
+            //assign GIFs to image buttons
+            Mood happy = new Mood(this, this, moodTermOne, mood1);
+            happy.getGiphy();
+            Mood sad = new Mood(this, this, moodTermTwo, mood2);
+            sad.getGiphy();
+            Mood adventurous = new Mood(this, this, moodTermThree, mood3);
+            adventurous.getGiphy();
+            Mood healthy = new Mood(this, this, moodTermFour, mood4);
+            healthy.getGiphy();
 
         //logo details
         ImageView logoImage= (ImageView) findViewById(R.id.logo);
@@ -110,4 +116,6 @@ public class MainActivity extends AppCompatActivity
         }
         startActivity(toRestaurantResults);
     }
+
+
 }
