@@ -1,5 +1,6 @@
 package com.example.rui.location;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -55,14 +56,18 @@ public class RestaurantDetails extends AppCompatActivity {
         Picasso.with(getApplicationContext()).load(ratingURL).into(ratingURLimg);
 
 
-        TextView dets = (TextView) findViewById(R.id.details);
-        dets.setText(RestaurantDataName);
+        TextView restName = (TextView) findViewById(R.id.restaurantName);
+        //change font of restaurant name
+        Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/FFF_Tusj.ttf");
+        restName.setTypeface(customFont);
+        restName.setText(name);
 
         TextView dets2 = (TextView) findViewById(R.id.details2);
         dets2.setText(RestaurantData2);
 
         this.term = getTerm.getString("term");
         this.cityLocation = getTerm.getString("cityLocation");
+
     }
 
 }
