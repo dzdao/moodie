@@ -18,176 +18,145 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@+id/secondView"
-            android:orientation="vertical"
-            android:nestedScrollingEnabled="true"
             android:minHeight="0dp"
             android:minWidth="0dp"
+            android:nestedScrollingEnabled="true"
+            android:orientation="vertical"
             android:paddingLeft="10dp">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"
-                />
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='0' />
 
 
             <ImageView
                 android:id="@+id/image3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='2' />
+            2
 
             <ImageView
                 android:id="@+id/image5"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='4' />
+
             <ImageView
                 android:id="@+id/image7"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='6' />
 
             <ImageView
                 android:id="@+id/image9"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"
+                android:adjustViewBounds="true"
                 android:onClick="img1Function"
-                />
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='8' />
 
 
             <ImageView
                 android:id="@+id/image11"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='10' />
 
             <ImageView
                 android:id="@+id/image13"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='13' />
+
             <ImageView
                 android:id="@+id/image15"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='15' />
+
             <ImageView
                 android:id="@+id/image17"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='17' />
+
             <ImageView
                 android:id="@+id/image19"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image21"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
                 android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image23"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image25"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image27"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:tag='19' />
 
         </LinearLayout>
 
@@ -209,166 +178,139 @@
                 android:id="@+id/image2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='1' />
 
             <ImageView
                 android:id="@+id/image4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='3' />
 
             <ImageView
                 android:id="@+id/image6"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='5' />
+
             <ImageView
                 android:id="@+id/image8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='7' />
+
             <ImageView
                 android:id="@+id/image10"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='9' />
+
             <ImageView
                 android:id="@+id/image12"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='11' />
+
             <ImageView
                 android:id="@+id/image14"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='13' />
+
             <ImageView
                 android:id="@+id/image16"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='15' />
+
             <ImageView
                 android:id="@+id/image18"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="fitCenter"
+                android:tag='17' />
+
             <ImageView
                 android:id="@+id/image20"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginLeft="-5dp"
                 android:layout_marginRight="-5dp"
                 android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image22"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
                 android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image24"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image26"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-            <ImageView
-                android:id="@+id/image28"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_marginRight="-5dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginBottom="-5dp"/>
-
+                android:tag='19' />
 
 
         </LinearLayout>
+
         <TextView
+            android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="16dp"
-            android:id= "@+id/test"/>
+            android:textSize="16dp" />
     </RelativeLayout>
 </ScrollView>
