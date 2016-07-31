@@ -46,8 +46,7 @@ public class RestaurantDetails extends AppCompatActivity {
                 "Address: " +
                 this.address + "\n\n" +
                 "Review: " +
-                this.reviewSnippet + "\n\n"
-                +ratingURL;
+                this.reviewSnippet + "\n\n";
 
         ImageView img = (ImageView) findViewById(R.id.image);
         ImageView ratingURLimg = (ImageView) findViewById(R.id.ratingUrl);
