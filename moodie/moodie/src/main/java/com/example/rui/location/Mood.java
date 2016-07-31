@@ -17,6 +17,9 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.lang.*;
+import java.util.Random;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 //import android.widget.TextView;
@@ -158,9 +161,12 @@ public class Mood
     private void pickRandomGiphyUrl() {
 
         GiphyData[] gifs = giphyData;
-        int rand = (int)(Math.random() * gifs.length);
+        Random rand = new Random();
 
-        GiphyData gif = gifs[rand];
+        int randomint= rand.nextInt((int)(System.currentTimeMillis()% gifs.length));
+
+
+        GiphyData gif = gifs[randomint];
         giphyUrl = gif.getUrl();
         Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(265,210).fitCenter().into(imgBtn);
     }
