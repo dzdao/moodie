@@ -14,10 +14,11 @@ public class Restaurant
     private String reviewSnippet;
     private String state;
     private String ratingURL;
+    private String zipCode;
 
 
     public Restaurant( String name , String phoneNumber,String address,
-                       double distance, String reviewSnippet,String imageURL, String city, String state, String ratingURL)
+                       double distance, String reviewSnippet,String imageURL, String city, String state, String ratingURL, String zipCode)
     {
         this.name = name;
         this.phoneNumber=phoneNumber;
@@ -29,10 +30,12 @@ public class Restaurant
         this.city =city;
         this.state = state;
         this.ratingURL=ratingURL;
+        this.zipCode = zipCode;
     }
 
 
-    public String getAddress() {return address+ '\n' + city + ", " + state;
+    public String getAddress() {
+        return address+ '\n' + city + ", " + state + " " + zipCode;
     }
 
     public String getPhoneNumber() {
