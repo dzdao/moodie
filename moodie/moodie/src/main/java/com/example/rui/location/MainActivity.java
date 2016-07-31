@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
 
     String moodTermOne="happy";
     String moodTermTwo="sad";
-    String moodTermThree="brave";
+    String moodTermThree="gay";
     String moodTermFour="healthy";
 
     @Override

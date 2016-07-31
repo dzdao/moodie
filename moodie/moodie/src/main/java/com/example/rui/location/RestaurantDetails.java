@@ -16,9 +16,9 @@ public class RestaurantDetails extends AppCompatActivity {
     String imageURL;
     String reviewSnippet;
     String state;
+    String ratingURL;
 
     String term;
-
     String cityLocation;
 
     @Override
@@ -37,6 +37,7 @@ public class RestaurantDetails extends AppCompatActivity {
         this.city = getTerm.getString("city");
         this.state = getTerm.getString("state");
         this.reviewSnippet = getTerm.getString("reviewSnippet");
+        this.ratingURL=getTerm.getString("ratingURL");
 
         String RestaurantDataName = name;
         String RestaurantData2 = "Phone Number: " +
@@ -44,11 +45,14 @@ public class RestaurantDetails extends AppCompatActivity {
                 "Address: " +
                 this.address + "\n\n" +
                 "Review: " +
-                this.reviewSnippet + "\n\n";
+                this.reviewSnippet + "\n\n"
+                +ratingURL;
 
         ImageView img = (ImageView) findViewById(R.id.image);
+        ImageView ratingURLimg = (ImageView) findViewById(R.id.ratingUrl);
 
         Picasso.with(getApplicationContext()).load(imageURL).into(img);
+        Picasso.with(getApplicationContext()).load(ratingURL).into(ratingURLimg);
 
 
         TextView dets = (TextView) findViewById(R.id.details);
