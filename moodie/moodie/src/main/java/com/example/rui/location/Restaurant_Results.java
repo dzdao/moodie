@@ -222,7 +222,7 @@ public class Restaurant_Results extends AppCompatActivity {
                     String address;
                     double dist;
                     try {
-                        address = businesses.get(i).location().address().get(i);
+                        address = businesses.get(i).location().address().get(i)+'\n';
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available \n";
