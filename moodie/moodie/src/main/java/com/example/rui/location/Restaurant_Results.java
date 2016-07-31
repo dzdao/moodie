@@ -236,7 +236,7 @@ public class Restaurant_Results extends AppCompatActivity {
                         address = businesses.get(i).location().address().get(i);
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
-                        address = "No address available \n";
+                        address = "No address available";
                         dist = 0;
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
