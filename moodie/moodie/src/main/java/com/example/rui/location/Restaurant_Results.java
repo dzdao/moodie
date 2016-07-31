@@ -33,19 +33,14 @@ package com.example.rui.location;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
 import com.yelp.clientlib.connection.YelpAPI;
@@ -62,8 +57,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Restaurant_Results extends AppCompatActivity
-{
+public class Restaurant_Results extends AppCompatActivity {
     String location = "you're @ ";
 
 
@@ -73,11 +67,12 @@ public class Restaurant_Results extends AppCompatActivity
 
     // default parameters
     String term = ""; //used to always look for food places
-    String numberOfResults = "10"; //limit the number of results to 10 businesses
+    String numberOfResults = "20"; //limit the number of results to 20 businesses
     String category_filter = "food";
 
     Restaurant[] restaurant;
 
+    static int index = 0;
 
 
     /**
@@ -89,8 +84,7 @@ public class Restaurant_Results extends AppCompatActivity
     int search_category;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         restaurant = new Restaurant[Integer.parseInt(numberOfResults)];
 
         super.onCreate(savedInstanceState);
@@ -98,8 +92,8 @@ public class Restaurant_Results extends AppCompatActivity
 
         //get data from previous activity
         Bundle getTerm = getIntent().getExtras();
-        this.term=getTerm.getString("term");
-        this.cityLocation=getTerm.getString("cityLocation");
+        this.term = getTerm.getString("term");
+        this.cityLocation = getTerm.getString("cityLocation");
         Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
         toRestaurantResults.putExtra("term", term);
         toRestaurantResults.putExtra("cityLocation", cityLocation);
@@ -111,26 +105,25 @@ public class Restaurant_Results extends AppCompatActivity
     }
 
 
-
     private void getCoordinates() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         //REDUNDANT setting a defualt location here? why dont we use a default from default
-       // if (loc != null) {
+        // if (loc != null) {
 
-            // getLastKnownLocation returns the most recent location request
-            lat = loc.getLatitude();
-            lon = loc.getLongitude();
-       // }
-       // else {
-            // getLastKnownLocation did not find a recent location request
-            // prompt the OS for a new location or set a default location
-            // lm.requestLocationUpdates();
+        // getLastKnownLocation returns the most recent location request
+        lat = loc.getLatitude();
+        lon = loc.getLongitude();
+        // }
+        // else {
+        // getLastKnownLocation did not find a recent location request
+        // prompt the OS for a new location or set a default location
+        // lm.requestLocationUpdates();
 
         //    lat = 33.873825;
-           // lon = -117.924372;
-       // }
+        // lon = -117.924372;
+        // }
     }
 
     private void yelp() {
@@ -151,11 +144,10 @@ public class Restaurant_Results extends AppCompatActivity
         params.put("category_filter", category_filter);
 
 
-        if(cityLocation != null && !cityLocation.isEmpty()) {
+        if (cityLocation != null && !cityLocation.isEmpty()) {
             // if the user entered a city location, use that for the search
             call = yelpAPI.search(cityLocation, params);
-        }
-        else {
+        } else {
 
             // user did not enter a city location, so use their GPS
             getCoordinates();
@@ -174,30 +166,53 @@ public class Restaurant_Results extends AppCompatActivity
             String con_test = "";
 
             @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response)
-            {
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 restaurant = new Restaurant[Integer.parseInt(numberOfResults)];
 
-                ImageView img = (ImageView) findViewById(R.id.image);
-                ImageView img2 = (ImageView) findViewById(R.id.image2);
-                ImageView img3 = (ImageView) findViewById(R.id.image3);
-                ImageView img4 = (ImageView) findViewById(R.id.image4);
-                ImageView img5 = (ImageView) findViewById(R.id.image5);
-                ImageView img6 = (ImageView) findViewById(R.id.image6);
-                ImageView img7 = (ImageView) findViewById(R.id.image7);
-                ImageView img8 = (ImageView) findViewById(R.id.image8);
-                ImageView img9 = (ImageView) findViewById(R.id.image9);
-                ImageView img10 = (ImageView) findViewById(R.id.image10);
-                ImageView img11 = (ImageView) findViewById(R.id.image11);
-                ImageView img12 = (ImageView) findViewById(R.id.image12);
-                ImageView img13 = (ImageView) findViewById(R.id.image13);
-                ImageView img14 = (ImageView) findViewById(R.id.image14);
-                ImageView img15 = (ImageView) findViewById(R.id.image15);
-                ImageView img16 = (ImageView) findViewById(R.id.image16);
-                ImageView img17 = (ImageView) findViewById(R.id.image17);
-                ImageView img18 = (ImageView) findViewById(R.id.image18);
-                ImageView img19 = (ImageView) findViewById(R.id.image19);
-                ImageView img20 = (ImageView) findViewById(R.id.image20);
+                ArrayList<ImageView> images = new ArrayList<>();
+
+                images.add((ImageView) findViewById(R.id.image));
+                images.add((ImageView) findViewById(R.id.image2));
+                images.add((ImageView) findViewById(R.id.image3));
+                images.add((ImageView) findViewById(R.id.image4));
+                images.add((ImageView) findViewById(R.id.image5));
+                images.add((ImageView) findViewById(R.id.image6));
+                images.add((ImageView) findViewById(R.id.image7));
+                images.add((ImageView) findViewById(R.id.image8));
+                images.add((ImageView) findViewById(R.id.image9));
+                images.add((ImageView) findViewById(R.id.image10));
+                images.add((ImageView) findViewById(R.id.image11));
+                images.add((ImageView) findViewById(R.id.image12));
+                images.add((ImageView) findViewById(R.id.image13));
+                images.add((ImageView) findViewById(R.id.image14));
+                images.add((ImageView) findViewById(R.id.image15));
+                images.add((ImageView) findViewById(R.id.image16));
+                images.add((ImageView) findViewById(R.id.image17));
+                images.add((ImageView) findViewById(R.id.image18));
+                images.add((ImageView) findViewById(R.id.image19));
+                images.add((ImageView) findViewById(R.id.image20));
+
+
+                final ImageView img = (ImageView) findViewById(R.id.image);
+                final ImageView img2 = (ImageView) findViewById(R.id.image2);
+                final ImageView img3 = (ImageView) findViewById(R.id.image3);
+                final ImageView img4 = (ImageView) findViewById(R.id.image4);
+                final ImageView img5 = (ImageView) findViewById(R.id.image5);
+                final ImageView img6 = (ImageView) findViewById(R.id.image6);
+                final ImageView img7 = (ImageView) findViewById(R.id.image7);
+                final ImageView img8 = (ImageView) findViewById(R.id.image8);
+                final ImageView img9 = (ImageView) findViewById(R.id.image9);
+                final ImageView img10 = (ImageView) findViewById(R.id.image10);
+                final ImageView img11 = (ImageView) findViewById(R.id.image11);
+                final ImageView img12 = (ImageView) findViewById(R.id.image12);
+                final ImageView img13 = (ImageView) findViewById(R.id.image13);
+                final ImageView img14 = (ImageView) findViewById(R.id.image14);
+                final ImageView img15 = (ImageView) findViewById(R.id.image15);
+                final ImageView img16 = (ImageView) findViewById(R.id.image16);
+                final ImageView img17 = (ImageView) findViewById(R.id.image17);
+                final ImageView img18 = (ImageView) findViewById(R.id.image18);
+                final ImageView img19 = (ImageView) findViewById(R.id.image19);
+                final ImageView img20 = (ImageView) findViewById(R.id.image20);
 
 
                 SearchResponse searchResponse = response.body();
@@ -210,7 +225,7 @@ public class Restaurant_Results extends AppCompatActivity
                         address = businesses.get(i).location().address().get(i);
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
-                        address = "no address available";
+                        address = "No address available \n";
                         dist = 0;
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
@@ -228,93 +243,104 @@ public class Restaurant_Results extends AppCompatActivity
                 Picasso.with(getApplicationContext()).load(restaurant[7].getImageURL()).resize(250, 250).centerInside().into(img8);
                 Picasso.with(getApplicationContext()).load(restaurant[8].getImageURL()).resize(250, 250).centerInside().into(img9);
                 Picasso.with(getApplicationContext()).load(restaurant[9].getImageURL()).resize(250, 250).centerInside().into(img10);
-              //  Picasso.with(getApplicationContext()).load(restaurant[10].getImageURL()).resize(250, 250).centerInside().into(img11);
-               // Picasso.with(getApplicationContext()).load(restaurant[11].getImageURL()).resize(250, 250).centerInside().into(img12);
-               // Picasso.with(getApplicationContext()).load(restaurant[12].getImageURL()).resize(250, 250).centerInside().into(img13);
-               // Picasso.with(getApplicationContext()).load(restaurant[13].getImageURL()).resize(250, 250).centerInside().into(img14);
-               // Picasso.with(getApplicationContext()).load(restaurant[14].getImageURL()).resize(250, 250).centerInside().into(img15);
-               // Picasso.with(getApplicationContext()).load(restaurant[15].getImageURL()).resize(250, 250).centerInside().into(img16);
-               // Picasso.with(getApplicationContext()).load(restaurant[16].getImageURL()).resize(250, 250).centerInside().into(img17);
-               // Picasso.with(getApplicationContext()).load(restaurant[17].getImageURL()).resize(250, 250).centerInside().into(img18);
-               // Picasso.with(getApplicationContext()).load(restaurant[18].getImageURL()).resize(250, 250).centerInside().into(img19);
-                //Picasso.with(getApplicationContext()).load(restaurant[19].getImageURL()).resize(250, 250).centerInside().into(img20);
+                Picasso.with(getApplicationContext()).load(restaurant[10].getImageURL()).resize(250, 250).centerInside().into(img11);
+                Picasso.with(getApplicationContext()).load(restaurant[11].getImageURL()).resize(250, 250).centerInside().into(img12);
+                Picasso.with(getApplicationContext()).load(restaurant[12].getImageURL()).resize(250, 250).centerInside().into(img13);
+                Picasso.with(getApplicationContext()).load(restaurant[13].getImageURL()).resize(250, 250).centerInside().into(img14);
+                Picasso.with(getApplicationContext()).load(restaurant[14].getImageURL()).resize(250, 250).centerInside().into(img15);
+                Picasso.with(getApplicationContext()).load(restaurant[15].getImageURL()).resize(250, 250).centerInside().into(img16);
+                Picasso.with(getApplicationContext()).load(restaurant[16].getImageURL()).resize(250, 250).centerInside().into(img17);
+                Picasso.with(getApplicationContext()).load(restaurant[17].getImageURL()).resize(250, 250).centerInside().into(img18);
+                Picasso.with(getApplicationContext()).load(restaurant[18].getImageURL()).resize(250, 250).centerInside().into(img19);
+                Picasso.with(getApplicationContext()).load(restaurant[19].getImageURL()).resize(250, 250).centerInside().into(img20);
 
+                for (final ImageView imageView : images) {
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            switch (Integer.parseInt(imageView.getTag().toString())) {
+                                case 0:
+                                    index = 0;
+                                    break;
+                                case 1:
+                                    index = 1;
+                                    break;
+                                case 2:
+                                    index = 2;
+                                    break;
+                                case 3:
+                                    index = 3;
+                                    break;
+                                case 4:
+                                    index = 4;
+                                    break;
+                                case 5:
+                                    index = 5;
+                                    break;
+                                case 6:
+                                    index = 6;
+                                    break;
+                                case 7:
+                                    index = 7;
+                                    break;
+                                case 8:
+                                    index = 8;
+                                    break;
+                                case 9:
+                                    index = 9;
+                                    break;
+                                case 10:
+                                    index = 10;
+                                    break;
+                                case 11:
+                                    index = 11;
+                                    break;
+                                case 12:
+                                    index = 12;
+                                    break;
+                                case 13:
+                                    index = 13;
+                                    break;
+                                case 14:
+                                    index = 14;
+                                    break;
+                                case 15:
+                                    index = 15;
+                                    break;
+                                case 16:
+                                    index = 16;
+                                    break;
+                                case 17:
+                                    index = 17;
+                                    break;
+                                case 18:
+                                    index = 18;
+                                    break;
+                                case 19:
+                                    index = 19;
+                                    break;
+                                case 20:
+                                    index = 20;
+                                    break;
+                                default:
+                                    break;
 
-                img.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        toRestaurantDetails.putExtra("name", restaurant[0].getName());
-                        toRestaurantDetails.putExtra("address", restaurant[0].getAddress());
-                        toRestaurantDetails.putExtra("phoneNumber", restaurant[0].getPhoneNumber());
-                        toRestaurantDetails.putExtra("imageURL", restaurant[0].getImageURL());
-                        toRestaurantDetails.putExtra("city", restaurant[0].getCity());
-                        toRestaurantDetails.putExtra("state", restaurant[0].getState());
-                        toRestaurantDetails.putExtra("reviewSnippet", restaurant[0].getReviewSnippet());
-                        toRestaurantDetails.putExtra("distance", restaurant[0].getDistance());
-                        toRestaurantDetails.putExtra("term", term);
-                        startActivity(toRestaurantDetails);
+                            }
+                            Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+                            toRestaurantDetails.putExtra("name", restaurant[index].getName());
+                            toRestaurantDetails.putExtra("address", restaurant[index].getAddress());
+                            toRestaurantDetails.putExtra("phoneNumber", restaurant[index].getPhoneNumber());
+                            toRestaurantDetails.putExtra("imageURL", restaurant[index].getImageURL());
+                            toRestaurantDetails.putExtra("city", restaurant[index].getCity());
+                            toRestaurantDetails.putExtra("state", restaurant[index].getState());
+                            toRestaurantDetails.putExtra("reviewSnippet", restaurant[index].getReviewSnippet());
+                            toRestaurantDetails.putExtra("distance", restaurant[index].getDistance());
+                            toRestaurantDetails.putExtra("term", term);
+                            startActivity(toRestaurantDetails);
+                        }
 
-                    }
-                });
-                img2.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    { Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        toRestaurantDetails.putExtra("name", restaurant[1].getName());
-                        toRestaurantDetails.putExtra("address", restaurant[1].getAddress());
-                        toRestaurantDetails.putExtra("phoneNumber", restaurant[1].getPhoneNumber());
-                        toRestaurantDetails.putExtra("imageURL", restaurant[1].getImageURL());
-                        toRestaurantDetails.putExtra("city", restaurant[1].getCity());
-                        toRestaurantDetails.putExtra("state", restaurant[1].getState());
-                        toRestaurantDetails.putExtra("reviewSnippet", restaurant[1].getReviewSnippet());
-                        toRestaurantDetails.putExtra("distance", restaurant[1].getDistance());
-                        toRestaurantDetails.putExtra("term", term);       startActivity(toRestaurantDetails);
-                        startActivity(toRestaurantDetails);
-                    }
-                });
-
-                img3.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    { Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        toRestaurantDetails.putExtra("name", restaurant[2].getName());
-                        toRestaurantDetails.putExtra("address", restaurant[2].getAddress());
-                        toRestaurantDetails.putExtra("phoneNumber", restaurant[2].getPhoneNumber());
-                        toRestaurantDetails.putExtra("imageURL", restaurant[2].getImageURL());
-                        toRestaurantDetails.putExtra("city", restaurant[2].getCity());
-                        toRestaurantDetails.putExtra("state", restaurant[2].getState());
-                        toRestaurantDetails.putExtra("reviewSnippet", restaurant[2].getReviewSnippet());
-                        toRestaurantDetails.putExtra("distance", restaurant[2].getDistance());
-                        toRestaurantDetails.putExtra("term", term);       startActivity(toRestaurantDetails);
-                        startActivity(toRestaurantDetails);
-                    }
-                });
-                img4.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    { Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
-                        toRestaurantDetails.putExtra("name", restaurant[3].getName());
-                        toRestaurantDetails.putExtra("address", restaurant[3].getAddress());
-                        toRestaurantDetails.putExtra("phoneNumber", restaurant[3].getPhoneNumber());
-                        toRestaurantDetails.putExtra("imageURL", restaurant[3].getImageURL());
-                        toRestaurantDetails.putExtra("city", restaurant[3].getCity());
-                        toRestaurantDetails.putExtra("state", restaurant[3].getState());
-                        toRestaurantDetails.putExtra("reviewSnippet", restaurant[3].getReviewSnippet());
-                        toRestaurantDetails.putExtra("distance", restaurant[3].getDistance());
-                        toRestaurantDetails.putExtra("term", term);       startActivity(toRestaurantDetails);
-
-                        //more efective?
-                        toRestaurantDetails.putExtra("restaurant", restaurant[3].toString());
-                        startActivity(toRestaurantDetails);
-                    }
-                });
-
+                    });
+                }
             }
 
 
@@ -322,22 +348,20 @@ public class Restaurant_Results extends AppCompatActivity
             public void onFailure(Call<SearchResponse> call, Throwable t) {
                 // HTTP error happened, do something to handle it.
                 TextView connectionTest = (TextView) findViewById(R.id.test);
-                con_test = "No conection";
+                con_test = "No connection";
                 connectionTest.setText(con_test);
             }
 
         };
 
         // make the asynchronous request
-           call.enqueue(callback);
+        call.enqueue(callback);
     }
 
-
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(Restaurant_Results.this, MainActivity.class);
         startActivity(intent);
     }
 }
