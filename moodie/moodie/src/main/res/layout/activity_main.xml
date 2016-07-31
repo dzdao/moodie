@@ -9,20 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.rui.location.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:adjustViewBounds="true"
-        android:id="@+id/textLocation" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:adjustViewBounds="true"
-        android:id="@+id/connection" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,9 +76,10 @@
             android:minHeight="210dp"
             android:adjustViewBounds="true"
             android:textColor="#ffffff"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:onClick="buttonClicked"/>
+            android:onClick="buttonClicked"
+            android:layout_marginRight="5dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
