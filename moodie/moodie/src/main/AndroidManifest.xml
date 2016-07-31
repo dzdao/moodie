@@ -10,7 +10,7 @@
     <application
         android:allowBackup="true"
         android:debuggable="true"
-        android:icon="@mipmap/forknife"
+        android:icon="@drawable/logo_launcher"
         android:label="moodie"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
