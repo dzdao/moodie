@@ -61,14 +61,18 @@ public class Restaurant_Results extends AppCompatActivity {
     String location = "you're @ ";
 
 
-    String cityLocation;
-    double lat = 33.873825;
-    double lon = -117.924372;
+    private String cityLocation;
+    private double lat = 33.873825;
+    private double lon = -117.924372;
 
     // default parameters
-    String term = ""; //used to always look for food places
-    String numberOfResults = "20"; //limit the number of results to 20 businesses
-    String category_filter = "food";
+    private String term = ""; //used to always look for food places
+    private String numberOfResults = "20"; //limit the number of results to 20 businesses
+    private String category_filter = "food"; //category to look for
+    private String radius_filter="40000"; //max radius filter (25 miles)
+    private String sort="1"; //default sort for closest first
+
+
 
     Restaurant[] restaurant;
 
@@ -110,20 +114,20 @@ public class Restaurant_Results extends AppCompatActivity {
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         //REDUNDANT setting a defualt location here? why dont we use a default from default
-        // if (loc != null) {
+        if (loc != null) {
 
         // getLastKnownLocation returns the most recent location request
         lat = loc.getLatitude();
         lon = loc.getLongitude();
-        // }
-        // else {
+         }
+         else {
         // getLastKnownLocation did not find a recent location request
         // prompt the OS for a new location or set a default location
         // lm.requestLocationUpdates();
-
-        //    lat = 33.873825;
-        // lon = -117.924372;
-        // }
+            //default location
+           lat = 33.873825;
+         lon = -107.924372;
+         }
     }
 
     private void yelp() {
@@ -142,13 +146,18 @@ public class Restaurant_Results extends AppCompatActivity {
         params.put("term", term);
         params.put("limit", numberOfResults);
         params.put("category_filter", category_filter);
+        params.put("radius_filter", radius_filter);
 
 
         if (cityLocation != null && !cityLocation.isEmpty()) {
             // if the user entered a city location, use that for the search
+            // sort by distance, only supported by giving coordiantes. sort will be done by best matched
+            sort ="0";
+            params.put("sort", sort);
             call = yelpAPI.search(cityLocation, params);
-        } else {
-
+        } else
+        {
+            params.put("sort", sort);//sorted by distance
             // user did not enter a city location, so use their GPS
             getCoordinates();
 
@@ -157,6 +166,8 @@ public class Restaurant_Results extends AppCompatActivity {
                     .latitude(lat)
                     .longitude(lon).build();
             call = yelpAPI.search(coordinate, params);
+
+
         }
 
         // setup for asynchronous request
@@ -222,7 +233,7 @@ public class Restaurant_Results extends AppCompatActivity {
                     String address;
                     double dist;
                     try {
-                        address = businesses.get(i).location().address().get(i)+'\n';
+                        address = businesses.get(i).location().address().get(i);
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available \n";
