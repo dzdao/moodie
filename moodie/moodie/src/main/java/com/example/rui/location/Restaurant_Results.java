@@ -374,10 +374,4 @@ public class Restaurant_Results extends AppCompatActivity {
         call.enqueue(callback);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(Restaurant_Results.this, MainActivity.class);
-        startActivity(intent);
-    }
 }
