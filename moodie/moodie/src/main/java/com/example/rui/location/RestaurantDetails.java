@@ -1,20 +1,12 @@
 package com.example.rui.location;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class RestaurantDetails extends AppCompatActivity {
     String name;
@@ -52,10 +44,8 @@ public class RestaurantDetails extends AppCompatActivity {
 
         String RestaurantDataName = name;
         String RestaurantPhone = "Phone Number: " + this.phoneNumber + "\n";
-        String RestaurantData2 = "Address: " +
-                this.address + "\n\n" +
-                "Review: " +
-                this.reviewSnippet + "\n\n";
+        String RestaurantAddress = "Address: " + this.address + "\n";
+        String RestaurantReview ="Review: " + this.reviewSnippet + "\n";
 
         ImageView img = (ImageView) findViewById(R.id.image);
         ImageView ratingURLimg = (ImageView) findViewById(R.id.ratingUrl);
@@ -73,8 +63,11 @@ public class RestaurantDetails extends AppCompatActivity {
         TextView restPhone = (TextView) findViewById(R.id.phoneNum);
         restPhone.setText(RestaurantPhone);
 
-        TextView dets2 = (TextView) findViewById(R.id.details2);
-        dets2.setText(RestaurantData2);
+        TextView restAddress = (TextView) findViewById(R.id.address);
+        restAddress.setText(RestaurantAddress);
+
+        TextView restReview = (TextView) findViewById(R.id.review);
+        restReview.setText(RestaurantReview);
 
     }
 
