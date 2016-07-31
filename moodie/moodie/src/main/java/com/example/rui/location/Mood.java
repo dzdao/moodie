@@ -162,6 +162,6 @@ public class Mood
 
         GiphyData gif = gifs[rand];
         giphyUrl = gif.getUrl();
-        Glide.with(activity).load(giphyUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.happy).crossFade(100).override(260,210).fitCenter().into(imgBtn);
+        Glide.with(activity).load(giphyUrl).asGif().placeholder(R.drawable.placeholder).override(260,210).fitCenter().into(imgBtn);
     }
 }

@@ -117,7 +117,7 @@
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:tag='13' />
+                android:tag='12' />
 
             <ImageView
                 android:id="@+id/image15"
@@ -130,7 +130,7 @@
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:tag='15' />
+                android:tag='14' />
 
             <ImageView
                 android:id="@+id/image17"
@@ -143,7 +143,7 @@
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:tag='17' />
+                android:tag='16' />
 
             <ImageView
                 android:id="@+id/image19"
@@ -156,7 +156,7 @@
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:tag='19' />
+                android:tag='18' />
 
         </LinearLayout>
 

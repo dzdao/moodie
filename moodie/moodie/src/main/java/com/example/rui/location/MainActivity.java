@@ -13,10 +13,14 @@ public class MainActivity extends AppCompatActivity
 {
     String searchTermForHappyMood = "entertainment";
     String searchTermForSadMood = "dessert";
-    String searchTermForadventurousMood = "food";
-    String searchTermForhealthyMood = "healthy";
+    String searchTermForAdventurousMood = "food";
+    String searchTermForHealthyMood = "healthy";
     String cityLocation;
 
+    String moodTermOne="happy";
+    String moodTermTwo="sad";
+    String moodTermThree="brave";
+    String moodTermFour="healthy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +33,13 @@ public class MainActivity extends AppCompatActivity
         final ImageButton mood3 = (ImageButton) findViewById(R.id.mood3); // button for adventurous mood
         final ImageButton mood4 = (ImageButton) findViewById(R.id.mood4); // button for healthy mood
 
-        Mood happy = new Mood(this, this, "happy", mood1);
+        Mood happy = new Mood(this, this, moodTermOne, mood1);
         happy.getGiphy();
-        Mood sad = new Mood(this, this, "sad", mood2);
+        Mood sad = new Mood(this, this, moodTermTwo, mood2);
         sad.getGiphy();
-        Mood adventurous = new Mood(this, this, "adventurous", mood3);
+        Mood adventurous = new Mood(this, this, moodTermThree, mood3);
         adventurous.getGiphy();
-        Mood healthy = new Mood(this, this, "healthy", mood4);
+        Mood healthy = new Mood(this, this, moodTermFour , mood4);
         healthy.getGiphy();
 
 
@@ -59,10 +63,10 @@ public class MainActivity extends AppCompatActivity
                 toRestaurantResults.putExtra("term", searchTermForSadMood);
                 break;
             case (R.id.mood3):
-                toRestaurantResults.putExtra("term", searchTermForadventurousMood);
+                toRestaurantResults.putExtra("term", searchTermForAdventurousMood);
                 break;
             default:
-                toRestaurantResults.putExtra("term", searchTermForhealthyMood);
+                toRestaurantResults.putExtra("term", searchTermForHealthyMood);
                 break;
         }
         startActivity(toRestaurantResults);

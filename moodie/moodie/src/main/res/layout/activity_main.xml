@@ -83,14 +83,11 @@
             android:background="#b9080000"
             android:minWidth="265dp"
             android:minHeight="210dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:textSize="50px"
             android:adjustViewBounds="true"
-            android:text="#Healthy"
-            android:textColor="#fffdfd"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+
+            android:textColor="#fefcfc"
+
+            android:layout_marginTop="84dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
 
@@ -133,14 +130,11 @@
             android:background="#b9080000"
             android:minWidth="265dp"
             android:minHeight="210dp"
-            android:layout_alignTop="@+id/mood4"
-            android:layout_alignParentEnd="true"
-            android:textSize="50px"
+
             android:adjustViewBounds="true"
-            android:text="#Adventurous"
-            android:textColor="#fffefe"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
+
+            android:textColor="#ffffff"
+            android:layout_marginTop="84dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
     </LinearLayout>
