@@ -33,6 +33,7 @@ package com.example.rui.location;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -364,7 +365,9 @@ public class Restaurant_Results extends AppCompatActivity {
             public void onFailure(Call<SearchResponse> call, Throwable t) {
                 // HTTP error happened, do something to handle it.
                 TextView connectionTest = (TextView) findViewById(R.id.test);
-                con_test = "No connection, please enable wifi or mobile data and location services";
+                Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
+                connectionTest.setTypeface(customFont);
+                con_test = "No connection. please try with a different city";
                 connectionTest.setText(con_test);
             }
 
