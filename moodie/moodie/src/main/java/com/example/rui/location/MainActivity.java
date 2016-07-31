@@ -1,5 +1,6 @@
 package com.example.rui.location;
 
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity
     String moodTermThree="adventurous";
     String moodTermFour="healthy";
 
+    String messageString= "Hungry? pick a mood:";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,16 +40,27 @@ public class MainActivity extends AppCompatActivity
         final ImageButton mood3 = (ImageButton) findViewById(R.id.mood3); // button for adventurous mood
         final ImageButton mood4 = (ImageButton) findViewById(R.id.mood4); // button for healthy mood
 
+
         //find text views and set them according to mood search
         TextView mood1Text =(TextView)findViewById(R.id.buttonOneText);
         TextView mood2Text =(TextView)findViewById(R.id.buttonTwoText);
         TextView mood3Text =(TextView)findViewById(R.id.buttonThreeText);
         TextView mood4Text =(TextView)findViewById(R.id.buttonFourText);
+        TextView message =(TextView)findViewById(R.id.message);
+
+        //assign font
+        Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
+        mood1Text.setTypeface(customFont);
+        mood2Text .setTypeface(customFont);
+        mood3Text.setTypeface(customFont);
+        mood4Text.setTypeface(customFont);
+        message.setTypeface(customFont);
+
         mood1Text.setText("#"+moodTermOne);
         mood2Text.setText("#"+moodTermTwo);
         mood3Text.setText("#"+moodTermThree);
         mood4Text.setText("#"+moodTermFour);
-
+        message.setText(messageString);
 
         Mood happy = new Mood(this, this, moodTermOne, mood1);
         happy.getGiphy();

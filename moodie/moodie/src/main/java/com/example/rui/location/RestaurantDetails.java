@@ -58,7 +58,7 @@ public class RestaurantDetails extends AppCompatActivity {
 
         TextView restName = (TextView) findViewById(R.id.restaurantName);
         //change font of restaurant name
-        Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/FFF_Tusj.ttf");
+        Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
         restName.setTypeface(customFont);
         restName.setText(name);
 
