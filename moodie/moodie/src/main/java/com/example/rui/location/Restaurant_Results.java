@@ -364,7 +364,7 @@ public class Restaurant_Results extends AppCompatActivity {
             public void onFailure(Call<SearchResponse> call, Throwable t) {
                 // HTTP error happened, do something to handle it.
                 TextView connectionTest = (TextView) findViewById(R.id.test);
-                con_test = "No connection";
+                con_test = "No connection, please enable wifi or mobile data and location services";
                 connectionTest.setText(con_test);
             }
 
