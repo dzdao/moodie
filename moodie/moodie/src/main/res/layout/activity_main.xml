@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/inputLocation"
         android:layout_marginTop="39dp"
-        android:hint="Enter a city (optional)"
+        android:hint="Enter a location (optional)"
         android:layout_below="@+id/logo"
         android:adjustViewBounds="true"
         android:layout_centerHorizontal="true"/>
@@ -56,7 +56,8 @@
         android:minHeight="0dp"
         android:minWidth="0dp"
         android:paddingLeft="10dp"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:weightSum="1">
 
         <ImageButton
             android:layout_width="fill_parent"
@@ -66,16 +67,20 @@
             android:minWidth="265dp"
             android:minHeight="210dp"
             android:adjustViewBounds="true"
-            android:layout_below="@+id/inputLocation"
-            android:layout_alignParentStart="true"
-            android:text="#happy"
-            android:textColor="#fefcfc"
-            android:textSize="50px"
+            android:gravity="bottom"
+            android:textColor="#ffffff"
             android:layout_marginTop="84dp"
-            android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#happy"
+            android:textColor="#000000"
+            android:id="@+id/buttonOneText"
+            android:textSize="20sp"
 
+            />
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -84,12 +89,19 @@
             android:minWidth="265dp"
             android:minHeight="210dp"
             android:adjustViewBounds="true"
-
-            android:textColor="#fefcfc"
-
+            android:textColor="#ffffff"
             android:layout_marginTop="84dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#Healthy"
+            android:id="@+id/buttonFourText"
+            android:textColor="#000000"
+            android:textSize="20sp"
+
+            />
 
     </LinearLayout>
 
@@ -115,13 +127,25 @@
             android:background="#b9080000"
             android:minWidth="265dp"
             android:minHeight="210dp"
-
+            android:layout_alignTop="@+id/mood1"
+            android:layout_alignParentEnd="true"
+            android:text="#Sad"
             android:adjustViewBounds="true"
-
+            android:textSize="50px"
             android:textColor="#ffffff"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="84dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#sad"
+            android:textColor="#000000"
+            android:id="@+id/buttonTwoText"
+            android:textSize="20sp"
+
+            />
 
         <ImageButton
             android:layout_width="fill_parent"
@@ -130,13 +154,26 @@
             android:background="#b9080000"
             android:minWidth="265dp"
             android:minHeight="210dp"
-
+            android:layout_alignTop="@+id/mood4"
+            android:layout_alignParentEnd="true"
+            android:textSize="50px"
             android:adjustViewBounds="true"
-
-            android:textColor="#ffffff"
-            android:layout_marginTop="84dp"
+            android:text="#Adventurous"
+            android:textColor="#fffefe"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:onClick="buttonClicked"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonThreeText"
+            android:text="#adventurous"
+            android:textColor="#000000"
+            android:textSize="20sp"
+
+            />
+
     </LinearLayout>
 
 </RelativeLayout>
