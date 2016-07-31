@@ -31,7 +31,8 @@ public class Restaurant
         this.ratingURL=ratingURL;
     }
 
-    public String getAddress() {return address + '\n' + city + ", " + state;
+
+    public String getAddress() {return address+ '\n' + city + ", " + state;
     }
 
     public String getPhoneNumber() {
