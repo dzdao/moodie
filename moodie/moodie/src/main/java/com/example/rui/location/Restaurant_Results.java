@@ -241,7 +241,7 @@ public class Restaurant_Results extends AppCompatActivity {
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
                             address, dist, businesses.get(i).snippetText(),
-                            businesses.get(i).imageUrl(), businesses.get(i).location().city(), businesses.get(i).location().stateCode());
+                            businesses.get(i).imageUrl(), businesses.get(i).location().city(), businesses.get(i).location().stateCode(), businesses.get(i).ratingImgUrlLarge());
                 }
                 //Glide.with(Restaurant_Results.this).load(restaurant[0].getImageURL()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
                 Picasso.with(getApplicationContext()).load(restaurant[0].getImageURL()).resize(250, 250).centerInside().into(img);
@@ -346,6 +346,7 @@ public class Restaurant_Results extends AppCompatActivity {
                             toRestaurantDetails.putExtra("state", restaurant[index].getState());
                             toRestaurantDetails.putExtra("reviewSnippet", restaurant[index].getReviewSnippet());
                             toRestaurantDetails.putExtra("distance", restaurant[index].getDistance());
+                            toRestaurantDetails.putExtra("ratingURL", restaurant[index].getRatingURL());
                             toRestaurantDetails.putExtra("term", term);
                             startActivity(toRestaurantDetails);
                         }
