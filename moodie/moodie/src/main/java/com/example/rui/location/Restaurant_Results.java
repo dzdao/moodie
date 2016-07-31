@@ -337,6 +337,7 @@ public class Restaurant_Results extends AppCompatActivity {
                                     break;
 
                             }
+                            index--;
                             Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
                             toRestaurantDetails.putExtra("name", restaurant[index].getName());
                             toRestaurantDetails.putExtra("address", restaurant[index].getAddress());
