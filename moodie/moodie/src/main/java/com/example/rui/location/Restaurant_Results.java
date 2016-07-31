@@ -113,21 +113,21 @@ public class Restaurant_Results extends AppCompatActivity {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-        //REDUNDANT setting a defualt location here? why dont we use a default from default
+        // debugging: check for null prevents emulator from crashing
         if (loc != null) {
 
-        // getLastKnownLocation returns the most recent location request
-        lat = loc.getLatitude();
-        lon = loc.getLongitude();
-         }
-         else {
-        // getLastKnownLocation did not find a recent location request
-        // prompt the OS for a new location or set a default location
-        // lm.requestLocationUpdates();
-            //default location
-           lat = 33.873825;
-         lon = -107.924372;
-         }
+            // getLastKnownLocation returns the most recent location request
+            lat = loc.getLatitude();
+            lon = loc.getLongitude();
+        }
+        else {
+            // getLastKnownLocation did not find a recent location request
+            // prompt the OS for a new location with lm.requestLocationUpdates()
+
+            // or use default location
+            lat = 33.873825;
+            lon = -117.924372;
+        }
     }
 
     private void yelp() {
