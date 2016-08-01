@@ -1,18 +1,13 @@
 package com.example.rui.location;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.preference.PreferenceManager;
-import android.content.SharedPreferences;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     String moodTermThree="adventurous";
     String moodTermFour="healthy";
 
-    String messageString= "Hungry? pick a mood:";
+    String messageString= "Hungry? Pick a mood:";
 
     boolean internetConnection;
 
@@ -116,6 +111,4 @@ public class MainActivity extends AppCompatActivity
         }
         startActivity(toRestaurantResults);
     }
-
-
 }
