@@ -19,7 +19,8 @@
         android:hint="Enter a location (optional)"
         android:layout_below="@+id/logo"
         android:adjustViewBounds="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -33,17 +34,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:paddingLeft="75dp"
         android:paddingBottom="10dp"
-        android:text="Hungry? pick a mood:"
+        android:text="Hungry? Pick a mood: "
         android:textColor="#000000"
-        android:id="@+id/message"
         android:textSize="20sp"
+        android:adjustViewBounds="true"
+        android:id="@+id/message"
+        android:gravity="center" />
 
-        />
     <LinearLayout
         android:id="@+id/firstLayout"
         android:layout_width="match_parent"
