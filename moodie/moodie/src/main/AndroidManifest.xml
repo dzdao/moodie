@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Restaurant_Results" />
-        <activity android:name=".RestaurantDetails"></activity>
+        <activity android:name=".Restaurant_Results"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RestaurantDetails"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

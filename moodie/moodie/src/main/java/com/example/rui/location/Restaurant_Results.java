@@ -148,17 +148,13 @@ public class Restaurant_Results extends AppCompatActivity {
         params.put("limit", numberOfResults);
         params.put("category_filter", category_filter);
         params.put("radius_filter", radius_filter);
-
+        params.put("sort", sort);
 
         if (cityLocation != null && !cityLocation.isEmpty()) {
             // if the user entered a city location, use that for the search
-            // sort by distance, only supported by giving coordiantes. sort will be done by best matched
-            sort ="0";
-            params.put("sort", sort);
-            call = yelpAPI.search(cityLocation, params);
+              call = yelpAPI.search(cityLocation, params);
         } else
         {
-            params.put("sort", sort);//sorted by distance
             // user did not enter a city location, so use their GPS
             getCoordinates();
 
