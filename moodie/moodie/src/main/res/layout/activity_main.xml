@@ -67,14 +67,15 @@
             android:adjustViewBounds="true"
             android:gravity="bottom"
             android:background="@drawable/background"
-            android:onClick="buttonClicked"/>
+            android:onClick="buttonClicked"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="#happy"
             android:textColor="#000000"
             android:id="@+id/buttonOneText"
-            android:textSize="20sp"
+            android:textSize="18sp"
 
             />
         <ImageButton
@@ -87,14 +88,13 @@
             android:gravity="bottom"
             android:background="@drawable/background"
             android:onClick="buttonClicked"/>
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="#Healthy"
             android:id="@+id/buttonFourText"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="18sp"
 
             />
 
@@ -124,14 +124,14 @@
             android:adjustViewBounds="true"
             android:gravity="bottom"
             android:background="@drawable/background"
-            android:onClick="buttonClicked"/>/>
+            android:onClick="buttonClicked"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="#sad"
             android:textColor="#000000"
             android:id="@+id/buttonTwoText"
-            android:textSize="20sp"
+            android:textSize="18sp"
 
             />
 
@@ -151,7 +151,7 @@
             android:id="@+id/buttonThreeText"
             android:text="#adventurous"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="18sp"
 
             />
 
