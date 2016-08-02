@@ -169,15 +169,12 @@ public class Mood
     private void pickRandomGiphyUrl() {
 
         GiphyData[] gifs = giphyData;
-        Random rand = new Random();
+        int rand = (int)(Math.random() * gifs.length);
 
-        int randomint= rand.nextInt((int)(System.currentTimeMillis() % gifs.length));
-
-        GiphyData gif = gifs[randomint];
+        GiphyData gif = gifs[rand];
         giphyUrl = gif.getUrl();
-
-
-            Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(265, 210).fitCenter().into(imgBtn);
+        Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(170, 98).fitCenter().into(imgBtn);
+       // Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(300, 200).fitCenter().into(imgBtn);
     }
 
 

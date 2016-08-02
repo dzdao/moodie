@@ -59,17 +59,14 @@
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mood1"
-            android:background="#b9080000"
-            android:minWidth="265dp"
-            android:minHeight="210dp"
+            android:minWidth="170dp"
+            android:minHeight="98dp"
             android:adjustViewBounds="true"
             android:gravity="bottom"
-            android:textColor="#ffffff"
-            android:layout_marginTop="84dp"
-            android:layout_marginBottom="5dp"
+            android:background="@drawable/background"
             android:onClick="buttonClicked"/>
         <TextView
             android:layout_width="match_parent"
@@ -81,18 +78,16 @@
 
             />
         <ImageButton
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mood4"
-            android:background="#b9080000"
-            android:minWidth="265dp"
-            android:minHeight="210dp"
+            android:minWidth="170dp"
+            android:minHeight="98dp"
             android:adjustViewBounds="true"
-            android:textColor="#ffffff"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="buttonClicked"
-            android:layout_marginRight="5dp" />
+            android:gravity="bottom"
+            android:background="@drawable/background"
+            android:onClick="buttonClicked"/>
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,22 +116,15 @@
         android:gravity="bottom">
 
         <ImageButton
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mood2"
-            android:background="#b9080000"
-            android:minWidth="265dp"
-            android:minHeight="210dp"
-            android:layout_alignTop="@+id/mood1"
-            android:layout_alignParentEnd="true"
-            android:text="#Sad"
+            android:minWidth="170dp"
+            android:minHeight="98dp"
             android:adjustViewBounds="true"
-            android:textSize="50px"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginBottom="5dp"
-            android:onClick="buttonClicked"/>
+            android:gravity="bottom"
+            android:background="@drawable/background"
+            android:onClick="buttonClicked"/>/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,21 +136,14 @@
             />
 
         <ImageButton
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mood3"
-            android:background="#b9080000"
-            android:minWidth="265dp"
-            android:minHeight="210dp"
-            android:layout_alignTop="@+id/mood4"
-            android:layout_alignParentEnd="true"
-            android:textSize="50px"
+            android:minWidth="170dp"
+            android:minHeight="98dp"
             android:adjustViewBounds="true"
-            android:text="#Adventurous"
-            android:textColor="#fffefe"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:gravity="bottom"
+            android:background="@drawable/background"
             android:onClick="buttonClicked"/>
         <TextView
             android:layout_width="match_parent"
