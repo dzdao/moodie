@@ -51,12 +51,11 @@
                 android:adjustViewBounds="true"
                 android:minHeight="150dp"
                 android:minWidth="150dp"
-                android:layout_gravity="top"
+                android:layout_gravity="center_horizontal|top"
                 android:id="@+id/ratingUrl"
                 android:paddingBottom="15dp"
                 android:paddingLeft="150dp"
-                android:paddingRight="150dp"
-                />
+                android:paddingRight="150dp"/>
 
             <TextView
                 android:id="@+id/phoneNum"
