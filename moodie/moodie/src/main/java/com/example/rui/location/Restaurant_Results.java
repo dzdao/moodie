@@ -229,11 +229,18 @@ public class Restaurant_Results extends AppCompatActivity {
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++) {
                     String address;
                     double dist;
+
+                    // certain restaurants may not have an address e.g. food trucks
                     try {
                         address = businesses.get(i).location().address().get(0);
-                        dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available";
+                    }
+
+                    // if the search is done with a city instead of GPS coordinates, Yelp API will not return a distance
+                    try {
+                        dist = businesses.get(i).distance();
+                    } catch (Exception e) {
                         dist = 0;
                     }
 
