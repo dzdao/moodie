@@ -266,23 +266,39 @@ public class Restaurant_Results extends AppCompatActivity {
                 for (int i = 0; i < Integer.parseInt(numberOfResults); i++) {
                     String address;
                     double dist;
+
+                    // certain restaurants may not have an address e.g. food trucks
                     try {
 <<<<<<< Updated upstream
                         address = businesses.get(i).location().address().get(0);
-                        dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available";
+<<<<<<< HEAD
 =======
                         address = businesses.get(i).location().address().get(i)+'\n';
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available \n";
 >>>>>>> Stashed changes
+=======
+                    }
+
+                    // if the search is done with a city instead of GPS coordinates, Yelp API will not return a distance
+                    try {
+                        dist = businesses.get(i).distance();
+                    } catch (Exception e) {
+>>>>>>> 1ebc825087ab1e3bc65241ed88f4aae234b5ac4f
                         dist = 0;
                     }
+
+                    // Yelp API workaround: manually change ms.jpg to ls.jpg to pull a higher resolution image
+                    String businessUrl = businesses.get(i).imageUrl();
+                    int len = businessUrl.length();
+                    businessUrl = businessUrl.subSequence(0, len-6)+"ls.jpg";
+
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
                             address, dist, businesses.get(i).snippetText(),
-                            businesses.get(i).imageUrl(), businesses.get(i).location().city(),
+                            businessUrl, businesses.get(i).location().city(),
                             businesses.get(i).location().stateCode(),
                             businesses.get(i).ratingImgUrlLarge(),
                             businesses.get(i).location().postalCode());
