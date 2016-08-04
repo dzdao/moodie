@@ -101,6 +101,7 @@ public class RestaurantResults extends AppCompatActivity {
         toRestaurantResults.putExtra("term", term);
         toRestaurantResults.putExtra("cityLocation", cityLocation);
 
+        Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
 
         String con_test = "";
         yelp();
@@ -173,6 +174,14 @@ public class RestaurantResults extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+
+
+                TextView connectionTest = (TextView) findViewById(R.id.test);
+                Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
+                connectionTest.setTypeface(customFont);
+                con_test = "Results based on your input:";
+                connectionTest.setText(con_test);
+
                 restaurant = new Restaurant[Integer.parseInt(numberOfResults)];
 
                 ArrayList<ImageView> images = new ArrayList<>();
