@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@drawable/imageedit_7_6436331298"
     tools:context=".MainActivity">
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/imageedit_7_6436331298"
         android:orientation="vertical"
-        tools:context=".RestaurantResults">
+        tools:context="com.example.rui.location.Restaurant_Results">
 
 
         <LinearLayout
@@ -41,21 +41,18 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="top"
                 android:adjustViewBounds="true"
-                android:paddingBottom="20dp"
+                android:paddingBottom="30dp"
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:minHeight="150dp"
-                android:minWidth="150dp"
-                android:layout_gravity="center_horizontal|top"
                 android:id="@+id/ratingUrl"
+                android:adjustViewBounds="true"
                 android:paddingBottom="15dp"
-                android:paddingLeft="150dp"
-                android:paddingRight="150dp"/>
+                android:paddingLeft="90dp"
+                android:paddingRight="90dp"/>
 
             <TextView
                 android:id="@+id/phoneNum"

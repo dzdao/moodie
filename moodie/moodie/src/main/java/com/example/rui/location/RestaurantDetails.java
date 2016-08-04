@@ -63,7 +63,7 @@ public class RestaurantDetails extends AppCompatActivity {
 
 
 
-       //change font of restaurant name
+        //change font of restaurant name
         Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
         restName.setTypeface(customFont);
         restName.setText(name);
