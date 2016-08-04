@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
 
     // on click, send request for a term to next activity (using xml to call function)
     public void buttonClicked(View v) {
-        Intent toRestaurantResults = new Intent(MainActivity.this, Restaurant_Results.class);
+        Intent toRestaurantResults = new Intent(MainActivity.this, RestaurantResults.class);
 
         // pull and store the location the user typed
         EditText specificLocation = (EditText) findViewById(R.id.inputLocation);
