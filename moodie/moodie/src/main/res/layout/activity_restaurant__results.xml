@@ -6,12 +6,25 @@
     android:background="@drawable/imageedit_7_6436331298"
     tools:context=".MainActivity">
 
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/imageedit_7_6436331298"
         tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:adjustViewBounds="true"
+            android:gravity="center"
+            android:text=" "
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"/>
 
         <LinearLayout
             android:id="@+id/firstLayout"
@@ -22,9 +35,11 @@
             android:minWidth="0dp"
             android:nestedScrollingEnabled="true"
             android:orientation="vertical"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:paddingLeft="10dp"
-            android:paddingRight="5dp">
+            android:paddingRight="5dp"
+            android:layout_below="@+id/test">
+
 
             <ImageView
                 android:id="@+id/image"
@@ -140,9 +155,10 @@
             android:layout_height="fill_parent"
             android:layout_toRightOf="@+id/secondView"
             android:orientation="vertical"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:paddingLeft="5dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_below="@+id/test">
 
             <ImageView
                 android:id="@+id/image2"
@@ -244,14 +260,5 @@
                 android:layout_marginBottom="10dp" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#000000"
-            android:textSize="30sp" 
-            android:adjustViewBounds="true"
-            android:gravity="center"/>
     </RelativeLayout>
 </ScrollView>
