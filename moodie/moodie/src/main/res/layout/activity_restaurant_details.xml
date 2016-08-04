@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/imageedit_7_6436331298"
         android:orientation="vertical"
-        tools:context="com.example.rui.location.Restaurant_Results">
+        tools:context=".RestaurantResults">
 
 
         <LinearLayout

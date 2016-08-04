@@ -33,10 +33,7 @@ package com.example.rui.location;
 
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< Updated upstream
 import android.graphics.Typeface;
-=======
->>>>>>> Stashed changes
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -61,16 +58,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Restaurant_Results extends AppCompatActivity {
-    String location = "you're @ ";
-
+public class RestaurantResults extends AppCompatActivity {
 
     private String cityLocation;
     private double lat = 33.873825;
     private double lon = -117.924372;
 
     // default parameters
-<<<<<<< Updated upstream
     private String term = ""; //used to always look for food places
     private String numberOfResults = "20"; //limit the number of results to 20 businesses
     private String category_filter = "food"; //category to look for
@@ -78,21 +72,11 @@ public class Restaurant_Results extends AppCompatActivity {
     private String sort="1"; //default sort for closest first
 
 
-=======
-    String term = ""; //used to always look for food places
-    String numberOfResults = "20"; //limit the number of results to 20 businesses
-    String category_filter = "food";
->>>>>>> Stashed changes
 
     Restaurant[] restaurant;
 
     static int index = 0;
 
-
-   private String consumerKey = "GH0hCC83JR1G-T_7T54jxw";
-    private String consumerSecret = "Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
-    private String token = "VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
-    private String tokenSecret = "QYcm0Coq4XRfjLTSfyCv4Zlb38c";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -113,7 +97,7 @@ public class Restaurant_Results extends AppCompatActivity {
         Bundle getTerm = getIntent().getExtras();
         this.term = getTerm.getString("term");
         this.cityLocation = getTerm.getString("cityLocation");
-        Intent toRestaurantResults = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+        Intent toRestaurantResults = new Intent(RestaurantResults.this, RestaurantDetails.class);
         toRestaurantResults.putExtra("term", term);
         toRestaurantResults.putExtra("cityLocation", cityLocation);
 
@@ -128,7 +112,6 @@ public class Restaurant_Results extends AppCompatActivity {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-<<<<<<< Updated upstream
         // debugging: check for null prevents emulator from crashing
         if (loc != null) {
 
@@ -144,26 +127,13 @@ public class Restaurant_Results extends AppCompatActivity {
             lat = 33.873825;
             lon = -117.924372;
         }
-=======
-        //REDUNDANT setting a defualt location here? why dont we use a default from default
-        // if (loc != null) {
-
-        // getLastKnownLocation returns the most recent location request
-        lat = loc.getLatitude();
-        lon = loc.getLongitude();
-        // }
-        // else {
-        // getLastKnownLocation did not find a recent location request
-        // prompt the OS for a new location or set a default location
-        // lm.requestLocationUpdates();
-
-        //    lat = 33.873825;
-        // lon = -117.924372;
-        // }
->>>>>>> Stashed changes
     }
 
     private void yelp() {
+        String consumerKey = "GH0hCC83JR1G-T_7T54jxw";
+        String consumerSecret = "Dw-cj6EtFAIRpu9pzSRjEuHEUNs";
+        String token = "VPvzcqEfLh07yrHaAzIARouynBWnDjxv";
+        String tokenSecret = "QYcm0Coq4XRfjLTSfyCv4Zlb38c";
         YelpAPIFactory apiFactory = new YelpAPIFactory(consumerKey, consumerSecret, token, tokenSecret);
         YelpAPI yelpAPI = apiFactory.createAPI();
         // call request to API
@@ -178,20 +148,11 @@ public class Restaurant_Results extends AppCompatActivity {
         params.put("radius_filter", radius_filter);
         params.put("sort", sort);
 
-<<<<<<< Updated upstream
         if (cityLocation != null && !cityLocation.isEmpty()) {
             // if the user entered a city location, use that for the search
               call = yelpAPI.search(cityLocation, params);
         } else
         {
-=======
-
-        if (cityLocation != null && !cityLocation.isEmpty()) {
-            // if the user entered a city location, use that for the search
-            call = yelpAPI.search(cityLocation, params);
-        } else {
-
->>>>>>> Stashed changes
             // user did not enter a city location, so use their GPS
             getCoordinates();
 
@@ -267,17 +228,10 @@ public class Restaurant_Results extends AppCompatActivity {
                     String address;
                     double dist;
                     try {
-<<<<<<< Updated upstream
                         address = businesses.get(i).location().address().get(0);
                         dist = businesses.get(i).distance();
                     } catch (Exception e) {
                         address = "No address available";
-=======
-                        address = businesses.get(i).location().address().get(i)+'\n';
-                        dist = businesses.get(i).distance();
-                    } catch (Exception e) {
-                        address = "No address available \n";
->>>>>>> Stashed changes
                         dist = 0;
                     }
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
@@ -287,7 +241,7 @@ public class Restaurant_Results extends AppCompatActivity {
                             businesses.get(i).ratingImgUrlLarge(),
                             businesses.get(i).location().postalCode());
                 }
-                //Glide.with(Restaurant_Results.this).load(restaurant[0].getImageURL()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
+                //Glide.with(RestaurantResults.this).load(restaurant[0].getImageURL()).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
                 Picasso.with(getApplicationContext()).load(restaurant[0].getImageURL()).resize(250, 250).centerInside().into(img);
                 Picasso.with(getApplicationContext()).load(restaurant[1].getImageURL()).resize(250, 250).centerInside().into(img2);
                 Picasso.with(getApplicationContext()).load(restaurant[2].getImageURL()).resize(250, 250).centerInside().into(img3);
@@ -374,24 +328,15 @@ public class Restaurant_Results extends AppCompatActivity {
                                 case 19:
                                     index = 19;
                                     break;
-<<<<<<< Updated upstream
                                 case 20:
                                     index = 20;
                                     break;
-=======
-                                //case 20:
-                                 //   index = 20;
-                                   // break;
->>>>>>> Stashed changes
                                 default:
                                     break;
 
                             }
-<<<<<<< Updated upstream
                             index--;
-=======
->>>>>>> Stashed changes
-                            Intent toRestaurantDetails = new Intent(Restaurant_Results.this, RestaurantDetails.class);
+                            Intent toRestaurantDetails = new Intent(RestaurantResults.this, RestaurantDetails.class);
                             toRestaurantDetails.putExtra("name", restaurant[index].getName());
                             toRestaurantDetails.putExtra("address", restaurant[index].getAddress());
                             toRestaurantDetails.putExtra("phoneNumber", restaurant[index].getPhoneNumber());
@@ -400,10 +345,7 @@ public class Restaurant_Results extends AppCompatActivity {
                             toRestaurantDetails.putExtra("state", restaurant[index].getState());
                             toRestaurantDetails.putExtra("reviewSnippet", restaurant[index].getReviewSnippet());
                             toRestaurantDetails.putExtra("distance", restaurant[index].getDistance());
-<<<<<<< Updated upstream
                             toRestaurantDetails.putExtra("ratingURL", restaurant[index].getRatingURL());
-=======
->>>>>>> Stashed changes
                             toRestaurantDetails.putExtra("term", term);
                             startActivity(toRestaurantDetails);
                         }
@@ -417,13 +359,9 @@ public class Restaurant_Results extends AppCompatActivity {
             public void onFailure(Call<SearchResponse> call, Throwable t) {
                 // HTTP error happened, do something to handle it.
                 TextView connectionTest = (TextView) findViewById(R.id.test);
-<<<<<<< Updated upstream
                 Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
                 connectionTest.setTypeface(customFont);
                 con_test = "No connection. please try with a different city";
-=======
-                con_test = "No connection";
->>>>>>> Stashed changes
                 connectionTest.setText(con_test);
             }
 
@@ -433,13 +371,4 @@ public class Restaurant_Results extends AppCompatActivity {
         call.enqueue(callback);
     }
 
-<<<<<<< Updated upstream
-=======
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(Restaurant_Results.this, MainActivity.class);
-        startActivity(intent);
-    }
->>>>>>> Stashed changes
 }

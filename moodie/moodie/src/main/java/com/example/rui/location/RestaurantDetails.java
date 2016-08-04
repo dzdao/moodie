@@ -42,32 +42,38 @@ public class RestaurantDetails extends AppCompatActivity {
         this.term = getTerm.getString("term");
         this.cityLocation = getTerm.getString("cityLocation");
 
-        String RestaurantDataName = name;
+
+        setUp();
+    }
+
+    private void setUp()
+    {
+        //variables to be displayed
         String RestaurantPhone = "Phone Number: " + this.phoneNumber + "\n";
         String RestaurantAddress = "Address: " + this.address + "\n";
         String RestaurantReview ="Review: " + this.reviewSnippet + "\n";
 
+        //get fields from the xml file
+        TextView restName = (TextView) findViewById(R.id.restaurantName);
         ImageView img = (ImageView) findViewById(R.id.image);
         ImageView ratingURLimg = (ImageView) findViewById(R.id.ratingUrl);
+        TextView restPhone = (TextView) findViewById(R.id.phoneNum);
+        TextView restAddress = (TextView) findViewById(R.id.address);
+        TextView restReview = (TextView) findViewById(R.id.review);
 
-        Picasso.with(getApplicationContext()).load(imageURL).into(img);
-        Picasso.with(getApplicationContext()).load(ratingURL).into(ratingURLimg);
 
 
-        TextView restName = (TextView) findViewById(R.id.restaurantName);
-        //change font of restaurant name
+       //change font of restaurant name
         Typeface customFont = Typeface.createFromAsset(getAssets(),"fonts/Lemon-Regular.ttf");
         restName.setTypeface(customFont);
         restName.setText(name);
 
-        TextView restPhone = (TextView) findViewById(R.id.phoneNum);
+        //set information on fields
         restPhone.setText(RestaurantPhone);
-
-        TextView restAddress = (TextView) findViewById(R.id.address);
         restAddress.setText(RestaurantAddress);
-
-        TextView restReview = (TextView) findViewById(R.id.review);
         restReview.setText(RestaurantReview);
+        Picasso.with(getApplicationContext()).load(imageURL).into(img);
+        Picasso.with(getApplicationContext()).load(ratingURL).into(ratingURLimg);
 
     }
 
