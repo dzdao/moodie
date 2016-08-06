@@ -1,3 +1,8 @@
+/**
+ * Created by Rodrigo Figueroa, David Dao,
+ Diana Galvan, and Sara Lipowsky  on 7/14/16.
+ */
+
 package com.example.rui.location;
 
 import android.graphics.Typeface;
@@ -7,21 +12,35 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+/*****************************************************
+ * this class is responsible for showing details of
+ * Restaurants
+ *************************************************** */
 
 public class RestaurantDetails extends AppCompatActivity {
-    String name;
-    String address;
-    String phoneNumber;
-    double distance;
-    String city;
-    String imageURL;
-    String reviewSnippet;
-    String state;
-    String ratingURL;
+    //declaration of local variables
+    private String name;
+    private String address;
+    private String phoneNumber;
+    private double distance;
+    private String city;
+    private String imageURL;
+    private String reviewSnippet;
+    private String state;
+    private String ratingURL;
+    private String term;
+    private String cityLocation;
 
-    String term;
-    String cityLocation;
-
+    /*************************************************************************
+     * protected void onCreate
+     * activity file used to create the third screen for the application and
+     * retrieve data from previous screen
+     *
+     * input:
+     * savedInstanceState: parameter to pass data from one activity to another
+     *
+     *  return: none
+     **************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +65,15 @@ public class RestaurantDetails extends AppCompatActivity {
         setUp();
     }
 
+    /*************************************************************************
+     * private void setUp()
+     * method to find data from the xml file  and set data on their corresponding
+     * xml fields
+     *
+     * input: none
+     *
+     *  return: none
+     **************************************************************************/
     private void setUp()
     {
         //variables to be displayed

@@ -1,6 +1,10 @@
+/**
+ * Created by Rodrigo Figueroa, David Dao,
+ Diana Galvan, and Sara Lipowsky  on 7/27/16.
+ */
 package com.example.rui.location;
 
-// libraries needed for Giphy Calls
+
 import android.app.Activity;
 import android.content.Context;
 import okhttp3.OkHttpClient;
@@ -24,23 +28,14 @@ import java.util.Random;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-//import android.widget.TextView;
-//import java.io.IOException;
-//import android.widget.ImageView;
-//import android.widget.Toast;
-//import android.widget.Button;
-//import android.view.View;
-//import android.content.Context;
-//import android.content.res.TypedArray;
-//import android.os.Bundle;
-//import android.os.AsyncTask;
-//import com.bumptech.glide.load.engine.DiskCacheStrategy;
-//import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-//import com.bumptech.glide.request.animation.GlideAnimation;
-//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
+/**************************************************************************
+ * This class is responsable of connecting to the giphy API and create
+ * GIF images for buttons on the main screen
+ ***************************************************************************/
 public class Mood
 {
+    //local variables
     Context context;
     GiphyData[] giphyData;
     private final Handler handler;
@@ -50,7 +45,18 @@ public class Mood
     String giphyUrl;
     ImageButton imgBtn;
 
-    // constructor
+
+    /*************************************************************************
+     *  constructor
+     *      Mood
+     * input:
+     * context : Current state of the application
+     * activity :the name of the activity from where it has been called
+     * mood: a String parameter to do a search for a gif
+     * imgBtn: ImageButton a button where the image is going to be placed on
+     *
+     *  return: none
+     **************************************************************************/
     public Mood(Context context, Activity activity, String mood, ImageButton imgBtn) {
 
         this.context = context;
@@ -60,9 +66,18 @@ public class Mood
         this.giphyUrl = null;
         this.imgBtn = imgBtn;
     }
-
+    /*************************************************************************
+     *    public void getGiphy()
+     *     connects to giphy API by using a public key and a term to look for a gif.
+     *     Also in charge to check for network connection to the giphy server
+     *
+     * input: none
+     *
+     *  return: none
+     **************************************************************************/
     public void getGiphy() {
 
+        //keyy needed to access API
         String apiKey = "dc6zaTOxFJmzC";
 
         String imageUrl = "http://api.giphy.com/v1/gifs/search?q=" +
@@ -79,6 +94,15 @@ public class Mood
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
 
+                /*************************************************************************
+                 * onFailure(Call request, IOException e)
+                 * called by getGiphy to check for a request call that connects to the
+                 * parameters
+                 *
+                 * input :none
+                 *
+                 *  return: none
+                 **************************************************************************/
                 @Override
                 public void onFailure(Call request, IOException e) {
                     runOnUiThread(new Runnable() {
@@ -90,6 +114,15 @@ public class Mood
                     });
                 }
 
+                /*************************************************************************
+                 * onResponse(Call request, Response response)
+                 * if conection to the server is granted, a JSON object with multiple
+                 *  urls is returned.
+                 *
+                 * input :none
+                 *
+                 *  return: none
+                 **************************************************************************/
                 @Override
                 public void onResponse(Call request, Response response) throws IOException {
                     runOnUiThread(new Runnable() {
@@ -124,6 +157,18 @@ public class Mood
 
     }
 
+
+    /*************************************************************************
+     * getGif(String jsonData)
+     *  urls is returned.
+     *
+     * input :
+     * a string in Json format
+     * return type GiphyData[]
+     * networkIsActive()
+     *
+     *  return: GiphyData[]
+     **************************************************************************/
     private GiphyData[] getGif(String jsonData) throws JSONException {
         JSONObject giphy = new JSONObject(jsonData);
         JSONArray data = giphy.getJSONArray("data");
@@ -146,6 +191,17 @@ public class Mood
 
         return gifs_array;
     }
+
+    /*************************************************************************
+     *  private boolean networkIsActive()
+     *  checks for network connection and it theres no conection set moods to
+     *  a internet_access.png to let the user know.
+     *
+     * input : none
+     *
+     *  return:
+     *     isActive,a boolean variable with teh connection status
+     **************************************************************************/
     private boolean networkIsActive() {
 
         boolean isActive = false;
@@ -157,8 +213,6 @@ public class Mood
         if(net != null && net.isAvailable())
             isActive = true;
 
-
-
         return isActive;
     }
 
@@ -166,6 +220,14 @@ public class Mood
         handler.post(r);
     }
 
+    /*************************************************************************
+     *  pickRandomGiphyUrl()
+     *      picks a random url to display from the retuning call from giphy API
+     *
+     * input : none
+     *
+     *  return: none
+     **************************************************************************/
     private void pickRandomGiphyUrl() {
 
         GiphyData[] gifs = giphyData;
@@ -174,8 +236,7 @@ public class Mood
         GiphyData gif = gifs[rand];
         giphyUrl = gif.getUrl();
         Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(170, 98).fitCenter().into(imgBtn);
-       // Glide.with(activity).load(giphyUrl).placeholder(R.drawable.placeholder).override(300, 200).fitCenter().into(imgBtn);
-    }
+     }
 
 
 }

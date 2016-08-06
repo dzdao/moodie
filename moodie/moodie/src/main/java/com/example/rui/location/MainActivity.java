@@ -1,3 +1,8 @@
+/**
+ * Created by Rodrigo Figueroa, David Dao,
+ Diana Galvan, and Sara Lipowsky  on 7/28/16.
+ */
+
 package com.example.rui.location;
 
 import android.content.Intent;
@@ -12,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**************************************************************************
+ * This is the main screen of the app. This class is responsible for showing 4 gifs with 4 different moods.
+ ***************************************************************************/
 public class MainActivity extends AppCompatActivity
 {
     String searchTermForHappyMood = "entertainment";
@@ -27,8 +35,17 @@ public class MainActivity extends AppCompatActivity
 
     String messageString= "Hungry? Pick a mood:";
 
-    boolean internetConnection;
 
+    /*************************************************************************
+     * protected void onCreate
+     * activity file used to create the second  screen for the application and
+     * retrieve data from previous screen
+     *
+     * input:
+     * savedInstanceState: parameter to pass data from one activity to another
+     *
+     *  return: none
+     **************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+         //find buttons created in xml by id
         final ImageButton mood1 = (ImageButton) findViewById(R.id.mood1); // button for happy mood
         final ImageButton mood2 = (ImageButton) findViewById(R.id.mood2); // button for sad mood
         final ImageButton mood3 = (ImageButton) findViewById(R.id.mood3); // button for adventurous mood
@@ -57,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         mood4Text.setTypeface(customFont);
         message.setTypeface(customFont);
 
+        //set text on textviews for buttons
         mood1Text.setText("#"+moodTermOne);
         mood2Text.setText("#"+moodTermTwo);
         mood3Text.setText("#"+moodTermThree);
@@ -83,7 +102,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    // on click, send request for a term to next activity (using xml to call function)
+    /*************************************************************************
+     * protected void onCreate
+     *  on click, send request for a term to next activity (using xml to call function)
+     *
+     * input :
+     *      view, a listener for on click action
+     *
+     *
+     *  return: none
+     **************************************************************************/
+    //
     public void buttonClicked(View v) {
         Intent toRestaurantResults = new Intent(MainActivity.this, RestaurantResults.class);
 
