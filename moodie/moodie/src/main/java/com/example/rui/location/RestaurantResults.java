@@ -236,10 +236,15 @@ public class RestaurantResults extends AppCompatActivity {
                         dist = 0;
                     }
 
-                    // create restaurant object
+                    // Yelp API workaround: manually change ms.jpg to ls.jpg to pull a higher resolution image
+                    String businessUrl = businesses.get(i).imageUrl();
+                    int len = businessUrl.length();
+                    businessUrl = businessUrl.subSequence(0, len-6)+"348s.jpg";
+
+                    //create restaurant object
                     restaurant[i] = new Restaurant(businesses.get(i).name(), businesses.get(i).phone(),
                             address, dist, businesses.get(i).snippetText(),
-                            businesses.get(i).imageUrl(), businesses.get(i).location().city(),
+                            businessUrl, businesses.get(i).location().city(),
                             businesses.get(i).location().stateCode(),
                             businesses.get(i).ratingImgUrlLarge(),
                             businesses.get(i).location().postalCode());
