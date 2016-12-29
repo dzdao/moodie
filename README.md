@@ -1,10 +1,12 @@
 # moodie
 Restaurant finder based off your mood
 
-### screenshots
-Selection deppending on your mood
-![alt tag](./screenshots/moodie1.png) 
-Results based on mood selection
-![alt tag](./screenshot/moodie2.png)
-Details about restaurants
-![alt tag](./screenshot/moodie3.png)
+## screenshots
+<p>Selection deppending on your mood</p>
+<img src="./screenshots/moodie1.png" widht="300px" height="450px"/>
+
+<p>Results based on mood selection</p>
+<img src="./screenshots/moodie2.png" widht="300px" height="450px" />
+
+<p>Details about restaurants</p>
+<img src="./screenshots/moodie3.png" widht="300px" height="450px"/>
